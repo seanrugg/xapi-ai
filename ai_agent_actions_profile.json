@@ -1,0 +1,311 @@
+{
+  "id": "https://w3id.org/xapi/ai/profile",
+  "type": "Profile",
+  "prefLabel": {
+    "en": "xAPI AI Agent Actions Profile (AIAAP)"
+  },
+  "definition": {
+    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals, and governance outcomes."
+  },
+  "versions": [
+    {
+      "id": "https://w3id.org/xapi/ai/profile/0.9.0"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/instructed",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "instructed"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/planned",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "planned"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/delegated",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "delegated"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/invoked-tool",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "invoked tool"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/read-resource",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "read resource"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/wrote-resource",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "wrote resource"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/generated",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "generated"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/evaluated",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "evaluated"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/approved",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "approved"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/rejected",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "rejected"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/terminated",
+      "type": "Verb",
+      "prefLabel": {
+        "en": "terminated"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/agent",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "AI Agent"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/human",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Human Operator"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/tool",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Tool"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/resource",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Resource"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/prompt",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Prompt"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/model",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Model"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/run",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Model Session / Run"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/task",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Task"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/policy",
+      "type": "ActivityType",
+      "prefLabel": {
+        "en": "Policy"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/mcp-server-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "MCP Server ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/mcp-client-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "MCP Client ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/mcp-connection",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "MCP Connection"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/tool-name",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Tool Name"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/tool-parameters",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Tool Parameters"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/model-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Model ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/model-params",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Model Parameters"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/input-tokens",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Input Tokens"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/output-tokens",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Output Tokens"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/latency-ms",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Latency (ms)"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/cost",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Cost"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/resource-uri",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Resource URI"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/resource-hash",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Resource Hash"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/resource-version",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Resource Version"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/policy-ids",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Policy IDs"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/risk-score",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Risk Score"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/anomaly",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Anomaly"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/session-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Session ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/run-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Run ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/parent-run-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Parent Run ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/trace-id",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Trace ID"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/priority",
+      "type": "Extension",
+      "prefLabel": {
+        "en": "Priority"
+      }
+    }
+  ]
+}
