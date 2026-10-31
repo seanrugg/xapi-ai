@@ -7,5 +7,6 @@ An xAPI profile for recording what AI agents do, and, since 0.10.0, what robots,
 - `ROBOTICS_MODULE.md`: the 0.10.0 robotics and physical-AI module and its record-to-statement mapping.
 - `GAPS.md`: where the I2IDL Glossary of Digital Learning has no matching concept yet.
 - `examples/`: example statements.
+- `docs/`: the GitHub Pages site (built by `tools/build_site.py`): a readable page with one anchor per concept, and `profile.json`.
 
 Base IRI `https://w3id.org/xapi/ai/` (registration with w3id.org pending).
