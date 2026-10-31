@@ -1,311 +1,1564 @@
 {
+  "@context": "https://w3id.org/xapi/profiles/context",
   "id": "https://w3id.org/xapi/ai/profile",
   "type": "Profile",
+  "conformsTo": "https://w3id.org/xapi/profiles#1.0",
   "prefLabel": {
     "en": "xAPI AI Agent Actions Profile (AIAAP)"
   },
   "definition": {
-    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals, and governance outcomes."
+    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10.0 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, telemetry windows (pose, navigation, sensor), and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
+  },
+  "seeAlso": "https://github.com/seanrugg/xapi-ai",
+  "author": {
+    "type": "Person",
+    "name": "Sean Rugge",
+    "url": "https://github.com/seanrugg"
   },
   "versions": [
     {
-      "id": "https://w3id.org/xapi/ai/profile/0.9.0"
+      "id": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "wasRevisionOf": [
+        "https://w3id.org/xapi/ai/profile/0.9.0"
+      ],
+      "generatedAtTime": "2026-10-31T00:00:00Z"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "generatedAtTime": "2026-02-13T16:48:25Z"
     }
   ],
   "concepts": [
     {
       "id": "https://w3id.org/xapi/ai/verbs/instructed",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "instructed"
+      },
+      "definition": {
+        "en": "Human or system issued an instruction to an AI agent to perform a task."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/planned",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "planned"
+      },
+      "definition": {
+        "en": "AI agent produced a plan or chain of steps prior to execution."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/delegated",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "delegated"
+      },
+      "definition": {
+        "en": "AI agent handed off a subtask to another agent."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/invoked-tool",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "invoked tool"
+      },
+      "definition": {
+        "en": "AI agent called a tool (e.g., via the MCP tools interface) with parameters."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/read-resource",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "read resource"
+      },
+      "definition": {
+        "en": "AI agent retrieved context from a resource (file, database, API, knowledge base)."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/wrote-resource",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "wrote resource"
+      },
+      "definition": {
+        "en": "AI agent persisted or updated content in a resource."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/generated",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "generated"
+      },
+      "definition": {
+        "en": "AI agent produced an output (text, code, image, report)."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/evaluated",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "evaluated"
+      },
+      "definition": {
+        "en": "AI agent assessed content or results against criteria or policy."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/approved",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "approved"
+      },
+      "definition": {
+        "en": "Human or supervising agent approved a plan or output."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/rejected",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "rejected"
+      },
+      "definition": {
+        "en": "Human or supervising agent rejected a plan or output."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/verbs/terminated",
       "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "terminated"
+      },
+      "definition": {
+        "en": "Agent or human ended a run or session before completion."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/agent",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "AI Agent"
+      },
+      "definition": {
+        "en": "A software agent that acts on behalf of a human or another agent."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/human",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Human Operator"
+      },
+      "definition": {
+        "en": "A person who instructs, supervises or approves agent work."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/tool",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool"
+      },
+      "definition": {
+        "en": "A callable capability, such as an MCP tool server."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/resource",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource"
+      },
+      "definition": {
+        "en": "A file, database table, API endpoint or other data source."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/prompt",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Prompt"
+      },
+      "definition": {
+        "en": "An instruction or prompt given to a model."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/model",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model"
+      },
+      "definition": {
+        "en": "An AI model."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/run",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model Session / Run"
+      },
+      "definition": {
+        "en": "One model session or agent run."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/task",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Task"
+      },
+      "definition": {
+        "en": "A unit of work an agent was asked to do."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/activity-type/policy",
       "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Policy"
+      },
+      "definition": {
+        "en": "A rule or policy that constrains agent behavior."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/mcp-server-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Server ID"
+      },
+      "definition": {
+        "en": "Identifier of the MCP server involved."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/mcp-client-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Client ID"
+      },
+      "definition": {
+        "en": "Identifier of the MCP client involved."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/mcp-connection",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Connection"
+      },
+      "definition": {
+        "en": "MCP transport: stdio, http or sse."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/tool-name",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool Name"
+      },
+      "definition": {
+        "en": "Name of the tool invoked."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/tool-parameters",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool Parameters"
+      },
+      "definition": {
+        "en": "Parameters passed to the tool (redact as needed)."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/model-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model ID"
+      },
+      "definition": {
+        "en": "Identifier of the model used."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/model-params",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model Parameters"
+      },
+      "definition": {
+        "en": "Generation parameters (temperature, top_p, ...)."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/input-tokens",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Input Tokens"
+      },
+      "definition": {
+        "en": "Number of input tokens."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/output-tokens",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Output Tokens"
+      },
+      "definition": {
+        "en": "Number of output tokens."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/latency-ms",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Latency (ms)"
+      },
+      "definition": {
+        "en": "Elapsed time in milliseconds."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/cost",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Cost"
+      },
+      "definition": {
+        "en": "Cost of the operation, if known."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/resource-uri",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource URI"
+      },
+      "definition": {
+        "en": "URI of the resource read or written."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/resource-hash",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource Hash"
+      },
+      "definition": {
+        "en": "Hash of the resource content."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/resource-version",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource Version"
+      },
+      "definition": {
+        "en": "Version of the resource."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/policy-ids",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Policy IDs"
+      },
+      "definition": {
+        "en": "Policies applied to the operation."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/risk-score",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Risk Score"
+      },
+      "definition": {
+        "en": "Risk score assigned to the operation."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/anomaly",
-      "type": "Extension",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Anomaly"
+      },
+      "definition": {
+        "en": "Whether the operation was flagged as anomalous, with a reason."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/session-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Session ID"
+      },
+      "definition": {
+        "en": "Session identifier for traceability."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/run-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Run ID"
+      },
+      "definition": {
+        "en": "Run identifier for traceability."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/parent-run-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Parent Run ID"
+      },
+      "definition": {
+        "en": "Identifier of the parent run."
       }
     },
     {
       "id": "https://w3id.org/xapi/ai/extensions/trace-id",
-      "type": "Extension",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
       "prefLabel": {
         "en": "Trace ID"
+      },
+      "definition": {
+        "en": "Distributed trace identifier."
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/priority",
-      "type": "Extension",
+      "id": "https://w3id.org/xapi/ai/verbs/perceived",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
       "prefLabel": {
-        "en": "Priority"
+        "en": "perceived"
+      },
+      "definition": {
+        "en": "A robot or AI agent sensed something outside or inside its own body (camera, range sensor, battery, temperature)."
+      },
+      "broadMatch": [
+        "https://id.i2idl.org/concepts/artificial-intelligence-ai"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/reasoned",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "reasoned"
+      },
+      "definition": {
+        "en": "An agent reasoned without committing to act: a plan, prediction, question or interpretation."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/sensemaking",
+        "https://id.i2idl.org/concepts/metacognition"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/decided",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "decided"
+      },
+      "definition": {
+        "en": "An agent committed to act, or not to act."
       }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/performed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "performed"
+      },
+      "definition": {
+        "en": "An agent did something in the world or in software; the result carries the outcome."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/communicated",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "communicated"
+      },
+      "definition": {
+        "en": "An agent sent or received a message to or from another agent or a person."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/social-learning"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/learned",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "learned"
+      },
+      "definition": {
+        "en": "An agent drew a conclusion from experience that is meant to change its future behavior."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/experiential-learning",
+        "https://id.i2idl.org/concepts/knowledge-retention",
+        "https://id.i2idl.org/concepts/feedback-loop"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/set-policy",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "set policy"
+      },
+      "definition": {
+        "en": "An operator issued a rule that constrains agent or swarm behavior."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/verbs/reported",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "reported"
+      },
+      "definition": {
+        "en": "The memory server recorded a system fact (startup, key change, integrity result)."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/record",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron Record"
+      },
+      "definition": {
+        "en": "One signed, hash-chained memory record from a robot or AI agent, identified by agent and sequence number."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/long-term-memory"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/swarm",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Swarm"
+      },
+      "definition": {
+        "en": "A governed group of robots and agents with an appointed hub, used as a grouping context."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/place",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Place"
+      },
+      "definition": {
+        "en": "A named physical or logical location where a record was made."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/peer-role",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Peer (relevant type)"
+      },
+      "definition": {
+        "en": "contextAgents relevantType: an agent the record involved (sender, receiver, observed peer)."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/activity-type/relay-role",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Relay (relevant type)"
+      },
+      "definition": {
+        "en": "contextAgents relevantType: the hub that relayed the record to the memory server."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/seq",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record sequence"
+      },
+      "definition": {
+        "en": "The record's per-agent sequence number (integer >= 1)."
+      },
+      "inlineSchema": "{\"type\": \"integer\", \"minimum\": 1}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/hash",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record hash"
+      },
+      "definition": {
+        "en": "SHA-256 of the signed record (lowercase hex). Verify against the memory server."
+      },
+      "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/prev-hash",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Previous record hash"
+      },
+      "definition": {
+        "en": "Hash of the agent's previous record (hash chain)."
+      },
+      "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/payload-hash",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Payload hash"
+      },
+      "definition": {
+        "en": "SHA-256 of the record payload. The payload itself is not exported by default."
+      },
+      "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/signature",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record signature"
+      },
+      "definition": {
+        "en": "The author's Ed25519 signature over the record (hex)."
+      },
+      "inlineSchema": "{\"type\": \"string\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/record-type",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record type"
+      },
+      "definition": {
+        "en": "The Holocron record type: communication, thought, decision, action, event, perception, lesson, policy or system."
+      },
+      "inlineSchema": "{\"enum\": [\"communication\", \"thought\", \"decision\", \"action\", \"event\", \"perception\", \"lesson\", \"policy\", \"system\"]}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/tags",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record tags"
+      },
+      "definition": {
+        "en": "The record's tags, e.g. telemetry, internal."
+      },
+      "inlineSchema": "{\"type\": \"array\", \"items\": {\"type\": \"string\"}}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/refs",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Record references"
+      },
+      "definition": {
+        "en": "Links to other records by role, e.g. {\"because\": \"robot-1:41\"}. Values are agent:seq strings or lists of them."
+      },
+      "inlineSchema": "{\"type\": \"object\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/received-at",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Received at"
+      },
+      "definition": {
+        "en": "When the memory server accepted the record (ISO 8601)."
+      },
+      "inlineSchema": "{\"type\": \"string\", \"format\": \"date-time\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/holocron/mapping-version",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Mapping version"
+      },
+      "definition": {
+        "en": "Version of the record-to-statement mapping. Statement ids are derived per mapping version."
+      },
+      "inlineSchema": "{\"type\": \"string\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/agent-kind",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Agent kind"
+      },
+      "definition": {
+        "en": "What the actor is: robot, ai-agent, relay or human."
+      },
+      "inlineSchema": "{\"enum\": [\"robot\", \"ai-agent\", \"relay\", \"human\"]}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/software",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Software version"
+      },
+      "definition": {
+        "en": "The actor's software or firmware version string."
+      },
+      "inlineSchema": "{\"type\": \"string\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/outcome",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Outcome"
+      },
+      "definition": {
+        "en": "How an action ended: success, partial, reflex_stop, stuck, abandoned or failed. result.success is true only for success."
+      },
+      "inlineSchema": "{\"enum\": [\"success\", \"partial\", \"reflex_stop\", \"stuck\", \"abandoned\", \"failed\"]}"
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/extensions/telemetry",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Telemetry window"
+      },
+      "definition": {
+        "en": "A periodic sensor window: pose, navigation or sensor samples. Large windows are exported as a summary (samples_count, truncated: true)."
+      },
+      "inlineSchema": "{\"type\": \"object\", \"required\": [\"kind\"], \"properties\": {\"kind\": {\"enum\": [\"pose\", \"navigation\", \"sensor\"]}, \"frame\": {\"type\": \"string\"}, \"sensor\": {\"type\": \"string\"}, \"unit\": {\"type\": \"string\"}, \"samples\": {\"type\": \"array\", \"items\": {\"type\": \"object\"}}, \"goal\": {}, \"status\": {\"enum\": [\"active\", \"reached\", \"failed\", \"cancelled\"]}, \"distance_remaining_m\": {\"type\": \"number\"}, \"progress\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"samples_count\": {\"type\": \"integer\"}, \"truncated\": {\"type\": \"boolean\"}}}"
+    }
+  ],
+  "templates": [
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-perception",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron perception record"
+      },
+      "definition": {
+        "en": "A Holocron `perception` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "perception"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-thought",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron thought record"
+      },
+      "definition": {
+        "en": "A Holocron `thought` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/reasoned",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "thought"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-decision",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron decision record"
+      },
+      "definition": {
+        "en": "A Holocron `decision` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/decided",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "decision"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-action",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron action record"
+      },
+      "definition": {
+        "en": "A Holocron `action` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/performed",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "action"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/outcome']",
+          "presence": "recommended"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-communication",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron communication record"
+      },
+      "definition": {
+        "en": "A Holocron `communication` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/communicated",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "communication"
+          ]
+        },
+        {
+          "location": "$.context.contextAgents",
+          "presence": "recommended"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-event",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron event record"
+      },
+      "definition": {
+        "en": "A Holocron `event` record exported as a statement."
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "event"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-lesson",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron lesson record"
+      },
+      "definition": {
+        "en": "A Holocron `lesson` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/learned",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "lesson"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-policy",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron policy record"
+      },
+      "definition": {
+        "en": "A Holocron `policy` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/set-policy",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/holocron-system",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Holocron system record"
+      },
+      "definition": {
+        "en": "A Holocron `system` record exported as a statement."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/reported",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "system"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/telemetry-pose",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Telemetry: pose window"
+      },
+      "definition": {
+        "en": "A perception record tagged telemetry whose payload is a pose window."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "presence": "included",
+          "any": [
+            "telemetry"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "presence": "included",
+          "all": [
+            "pose"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/telemetry-navigation",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Telemetry: navigation window"
+      },
+      "definition": {
+        "en": "A perception record tagged telemetry whose payload is a navigation window."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "presence": "included",
+          "any": [
+            "telemetry"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "presence": "included",
+          "all": [
+            "navigation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi/ai/templates/telemetry-sensor",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "prefLabel": {
+        "en": "Telemetry: sensor window"
+      },
+      "definition": {
+        "en": "A perception record tagged telemetry whose payload is a sensor window."
+      },
+      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi/ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi/ai/profile/0.10.0"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "presence": "included",
+          "any": [
+            "telemetry"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "presence": "included",
+          "all": [
+            "sensor"
+          ]
+        }
+      ]
     }
   ]
 }
