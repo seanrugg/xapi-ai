@@ -15,30 +15,30 @@ It was designed for [LTMS / Holocron](https://github.com/seanrugg/ai_si_ltm), a 
 
 | Record type | Verb | IRI |
 |---|---|---|
-| `perception` | perceived | `https://w3id.org/xapi/ai/verbs/perceived` |
-| `thought` | reasoned | `https://w3id.org/xapi/ai/verbs/reasoned` |
-| `decision` | decided | `https://w3id.org/xapi/ai/verbs/decided` |
-| `action` | performed | `https://w3id.org/xapi/ai/verbs/performed` |
-| `communication` | communicated | `https://w3id.org/xapi/ai/verbs/communicated` |
+| `perception` | perceived | `https://w3id.org/xapi-ai/verbs/perceived` |
+| `thought` | reasoned | `https://w3id.org/xapi-ai/verbs/reasoned` |
+| `decision` | decided | `https://w3id.org/xapi-ai/verbs/decided` |
+| `action` | performed | `https://w3id.org/xapi-ai/verbs/performed` |
+| `communication` | communicated | `https://w3id.org/xapi-ai/verbs/communicated` |
 | `event` | experienced (ADL) | `http://adlnet.gov/expapi/verbs/experienced` |
-| `lesson` | learned | `https://w3id.org/xapi/ai/verbs/learned` |
-| `policy` | set policy | `https://w3id.org/xapi/ai/verbs/set-policy` |
-| `system` | reported | `https://w3id.org/xapi/ai/verbs/reported` |
+| `lesson` | learned | `https://w3id.org/xapi-ai/verbs/learned` |
+| `policy` | set policy | `https://w3id.org/xapi-ai/verbs/set-policy` |
+| `system` | reported | `https://w3id.org/xapi-ai/verbs/reported` |
 
 ## Mapping rules (mapping version 1)
 
-`<base>` is the memory server's public base URL (configuration, e.g. `https://ltms.example.org`). `EXT` = `https://w3id.org/xapi/ai/extensions/`.
+`<base>` is the memory server's public base URL (configuration, e.g. `https://ltms.example.org`). `EXT` = `https://w3id.org/xapi-ai/extensions/`.
 
 | Statement field | Value |
 |---|---|
-| `id` | `uuid5(NS, record.hash)` with `NS = uuid5(NAMESPACE_URL, "https://w3id.org/xapi/ai/profile/0.10.0/holocron-mapping/1")` = `31bddff3-c274-5e19-ba21-56836b977ee6`. A new mapping version gets a new namespace. |
+| `id` | `uuid5(NS, record.hash)` with `NS = uuid5(NAMESPACE_URL, "https://w3id.org/xapi-ai/profile/0.10.0/holocron-mapping/1")` = `19413c7a-d33c-5129-b99b-07d709cef285`. A new mapping version gets a new namespace. |
 | `actor` | Agent `{"account": {"homePage": <base>, "name": record.agent}}` |
 | `verb` | from the table above, `display.en` = the verb label |
 | `object` | Activity `<base>/records/<agent>/<seq>`, `definition.type` = `…/activity-type/record`, `definition.name.en` = `summary` (omitted when there is none) |
 | `timestamp` | record `ts`, unchanged |
 | `version` | the endpoint's xAPI version (`2.0.0` or `1.0.3`) |
 | `result` | **action:** `success` = `outcome == "success"`, and `EXT+outcome` = the outcome string, when `outcome` is set. **telemetry:** `EXT+telemetry` (below). Otherwise omitted. |
-| `context.contextActivities.category` | the profile version `https://w3id.org/xapi/ai/profile/0.10.0` (definition type `http://adlnet.gov/expapi/activities/profile`) |
+| `context.contextActivities.category` | the profile version `https://w3id.org/xapi-ai/profile/0.10.0` (definition type `http://adlnet.gov/expapi/activities/profile`) |
 | `context.contextActivities.grouping` | the author's swarm at write time `<base>/swarms/<name>` (type `…/activity-type/swarm`), and `place` as `<base>/places/<place>` (type `…/activity-type/place`); each only when present |
 | `context.contextAgents` (2.0.0) | each `peer` with relevant type `…/activity-type/peer-role`; the relaying hub with `…/activity-type/relay-role`. For 1.0.3 endpoints, peers go in `EXT+holocron/refs` only and `contextAgents` is omitted. |
 | `context.extensions` | `EXT+holocron/seq`, `/hash`, `/prev-hash`, `/payload-hash`, `/signature`, `/record-type`, `/received-at`, `/mapping-version` (`"1"`), `EXT+agent-kind`; plus `/tags`, `/refs`, `EXT+software` when present |

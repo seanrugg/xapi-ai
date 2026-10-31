@@ -1,6 +1,6 @@
 {
   "@context": "https://w3id.org/xapi/profiles/context",
-  "id": "https://w3id.org/xapi/ai/profile",
+  "id": "https://w3id.org/xapi-ai/profile",
   "type": "Profile",
   "conformsTo": "https://w3id.org/xapi/profiles#1.0",
   "prefLabel": {
@@ -17,22 +17,22 @@
   },
   "versions": [
     {
-      "id": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "id": "https://w3id.org/xapi-ai/profile/0.10.0",
       "wasRevisionOf": [
-        "https://w3id.org/xapi/ai/profile/0.9.0"
+        "https://w3id.org/xapi-ai/profile/0.9.0"
       ],
       "generatedAtTime": "2026-10-31T00:00:00Z"
     },
     {
-      "id": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "id": "https://w3id.org/xapi-ai/profile/0.9.0",
       "generatedAtTime": "2026-02-13T16:48:25Z"
     }
   ],
   "concepts": [
     {
-      "id": "https://w3id.org/xapi/ai/verbs/instructed",
+      "id": "https://w3id.org/xapi-ai/verbs/instructed",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "instructed"
       },
@@ -41,9 +41,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/planned",
+      "id": "https://w3id.org/xapi-ai/verbs/planned",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "planned"
       },
@@ -52,9 +52,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/delegated",
+      "id": "https://w3id.org/xapi-ai/verbs/delegated",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "delegated"
       },
@@ -63,9 +63,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/invoked-tool",
+      "id": "https://w3id.org/xapi-ai/verbs/invoked-tool",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "invoked tool"
       },
@@ -74,9 +74,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/read-resource",
+      "id": "https://w3id.org/xapi-ai/verbs/read-resource",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "read resource"
       },
@@ -85,9 +85,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/wrote-resource",
+      "id": "https://w3id.org/xapi-ai/verbs/wrote-resource",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "wrote resource"
       },
@@ -96,9 +96,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/generated",
+      "id": "https://w3id.org/xapi-ai/verbs/generated",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "generated"
       },
@@ -107,9 +107,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/evaluated",
+      "id": "https://w3id.org/xapi-ai/verbs/evaluated",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "evaluated"
       },
@@ -118,9 +118,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/approved",
+      "id": "https://w3id.org/xapi-ai/verbs/approved",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "approved"
       },
@@ -129,9 +129,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/rejected",
+      "id": "https://w3id.org/xapi-ai/verbs/rejected",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "rejected"
       },
@@ -140,9 +140,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/terminated",
+      "id": "https://w3id.org/xapi-ai/verbs/terminated",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "terminated"
       },
@@ -151,9 +151,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/agent",
+      "id": "https://w3id.org/xapi-ai/activity-type/agent",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "AI Agent"
       },
@@ -162,9 +162,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/human",
+      "id": "https://w3id.org/xapi-ai/activity-type/human",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Human Operator"
       },
@@ -173,9 +173,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/tool",
+      "id": "https://w3id.org/xapi-ai/activity-type/tool",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool"
       },
@@ -184,9 +184,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/resource",
+      "id": "https://w3id.org/xapi-ai/activity-type/resource",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource"
       },
@@ -195,9 +195,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/prompt",
+      "id": "https://w3id.org/xapi-ai/activity-type/prompt",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Prompt"
       },
@@ -206,9 +206,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/model",
+      "id": "https://w3id.org/xapi-ai/activity-type/model",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model"
       },
@@ -217,9 +217,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/run",
+      "id": "https://w3id.org/xapi-ai/activity-type/run",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model Session / Run"
       },
@@ -228,9 +228,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/task",
+      "id": "https://w3id.org/xapi-ai/activity-type/task",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Task"
       },
@@ -239,9 +239,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/policy",
+      "id": "https://w3id.org/xapi-ai/activity-type/policy",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Policy"
       },
@@ -250,9 +250,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/mcp-server-id",
+      "id": "https://w3id.org/xapi-ai/extensions/mcp-server-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Server ID"
       },
@@ -261,9 +261,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/mcp-client-id",
+      "id": "https://w3id.org/xapi-ai/extensions/mcp-client-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Client ID"
       },
@@ -272,9 +272,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/mcp-connection",
+      "id": "https://w3id.org/xapi-ai/extensions/mcp-connection",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "MCP Connection"
       },
@@ -283,9 +283,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/tool-name",
+      "id": "https://w3id.org/xapi-ai/extensions/tool-name",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool Name"
       },
@@ -294,9 +294,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/tool-parameters",
+      "id": "https://w3id.org/xapi-ai/extensions/tool-parameters",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Tool Parameters"
       },
@@ -305,9 +305,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/model-id",
+      "id": "https://w3id.org/xapi-ai/extensions/model-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model ID"
       },
@@ -316,9 +316,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/model-params",
+      "id": "https://w3id.org/xapi-ai/extensions/model-params",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Model Parameters"
       },
@@ -327,9 +327,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/input-tokens",
+      "id": "https://w3id.org/xapi-ai/extensions/input-tokens",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Input Tokens"
       },
@@ -338,9 +338,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/output-tokens",
+      "id": "https://w3id.org/xapi-ai/extensions/output-tokens",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Output Tokens"
       },
@@ -349,9 +349,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/latency-ms",
+      "id": "https://w3id.org/xapi-ai/extensions/latency-ms",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Latency (ms)"
       },
@@ -360,9 +360,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/cost",
+      "id": "https://w3id.org/xapi-ai/extensions/cost",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Cost"
       },
@@ -371,9 +371,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/resource-uri",
+      "id": "https://w3id.org/xapi-ai/extensions/resource-uri",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource URI"
       },
@@ -382,9 +382,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/resource-hash",
+      "id": "https://w3id.org/xapi-ai/extensions/resource-hash",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource Hash"
       },
@@ -393,9 +393,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/resource-version",
+      "id": "https://w3id.org/xapi-ai/extensions/resource-version",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Resource Version"
       },
@@ -404,9 +404,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/policy-ids",
+      "id": "https://w3id.org/xapi-ai/extensions/policy-ids",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Policy IDs"
       },
@@ -415,9 +415,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/risk-score",
+      "id": "https://w3id.org/xapi-ai/extensions/risk-score",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Risk Score"
       },
@@ -426,9 +426,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/anomaly",
+      "id": "https://w3id.org/xapi-ai/extensions/anomaly",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Anomaly"
       },
@@ -437,9 +437,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/session-id",
+      "id": "https://w3id.org/xapi-ai/extensions/session-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Session ID"
       },
@@ -448,9 +448,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/run-id",
+      "id": "https://w3id.org/xapi-ai/extensions/run-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Run ID"
       },
@@ -459,9 +459,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/parent-run-id",
+      "id": "https://w3id.org/xapi-ai/extensions/parent-run-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Parent Run ID"
       },
@@ -470,9 +470,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/trace-id",
+      "id": "https://w3id.org/xapi-ai/extensions/trace-id",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.9.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.9.0",
       "prefLabel": {
         "en": "Trace ID"
       },
@@ -481,9 +481,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/perceived",
+      "id": "https://w3id.org/xapi-ai/verbs/perceived",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "perceived"
       },
@@ -495,9 +495,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/reasoned",
+      "id": "https://w3id.org/xapi-ai/verbs/reasoned",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "reasoned"
       },
@@ -510,9 +510,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/decided",
+      "id": "https://w3id.org/xapi-ai/verbs/decided",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "decided"
       },
@@ -521,9 +521,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/performed",
+      "id": "https://w3id.org/xapi-ai/verbs/performed",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "performed"
       },
@@ -532,9 +532,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/communicated",
+      "id": "https://w3id.org/xapi-ai/verbs/communicated",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "communicated"
       },
@@ -546,9 +546,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/learned",
+      "id": "https://w3id.org/xapi-ai/verbs/learned",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "learned"
       },
@@ -562,9 +562,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/set-policy",
+      "id": "https://w3id.org/xapi-ai/verbs/set-policy",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "set policy"
       },
@@ -573,9 +573,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/verbs/reported",
+      "id": "https://w3id.org/xapi-ai/verbs/reported",
       "type": "Verb",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "reported"
       },
@@ -584,9 +584,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/record",
+      "id": "https://w3id.org/xapi-ai/activity-type/record",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron Record"
       },
@@ -598,9 +598,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/swarm",
+      "id": "https://w3id.org/xapi-ai/activity-type/swarm",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Swarm"
       },
@@ -609,9 +609,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/place",
+      "id": "https://w3id.org/xapi-ai/activity-type/place",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Place"
       },
@@ -620,9 +620,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/peer-role",
+      "id": "https://w3id.org/xapi-ai/activity-type/peer-role",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Peer (relevant type)"
       },
@@ -631,9 +631,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/activity-type/relay-role",
+      "id": "https://w3id.org/xapi-ai/activity-type/relay-role",
       "type": "ActivityType",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Relay (relevant type)"
       },
@@ -642,9 +642,9 @@
       }
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/seq",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/seq",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record sequence"
       },
@@ -654,9 +654,9 @@
       "inlineSchema": "{\"type\": \"integer\", \"minimum\": 1}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/hash",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/hash",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record hash"
       },
@@ -666,9 +666,9 @@
       "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/prev-hash",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/prev-hash",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Previous record hash"
       },
@@ -678,9 +678,9 @@
       "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/payload-hash",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/payload-hash",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Payload hash"
       },
@@ -690,9 +690,9 @@
       "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/signature",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/signature",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record signature"
       },
@@ -702,9 +702,9 @@
       "inlineSchema": "{\"type\": \"string\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/record-type",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/record-type",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record type"
       },
@@ -714,9 +714,9 @@
       "inlineSchema": "{\"enum\": [\"communication\", \"thought\", \"decision\", \"action\", \"event\", \"perception\", \"lesson\", \"policy\", \"system\"]}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/tags",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/tags",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record tags"
       },
@@ -726,9 +726,9 @@
       "inlineSchema": "{\"type\": \"array\", \"items\": {\"type\": \"string\"}}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/refs",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/refs",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Record references"
       },
@@ -738,9 +738,9 @@
       "inlineSchema": "{\"type\": \"object\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/received-at",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/received-at",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Received at"
       },
@@ -750,9 +750,9 @@
       "inlineSchema": "{\"type\": \"string\", \"format\": \"date-time\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/holocron/mapping-version",
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/mapping-version",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Mapping version"
       },
@@ -762,9 +762,9 @@
       "inlineSchema": "{\"type\": \"string\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/agent-kind",
+      "id": "https://w3id.org/xapi-ai/extensions/agent-kind",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Agent kind"
       },
@@ -774,9 +774,9 @@
       "inlineSchema": "{\"enum\": [\"robot\", \"ai-agent\", \"relay\", \"human\"]}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/software",
+      "id": "https://w3id.org/xapi-ai/extensions/software",
       "type": "ContextExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Software version"
       },
@@ -786,9 +786,9 @@
       "inlineSchema": "{\"type\": \"string\"}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/outcome",
+      "id": "https://w3id.org/xapi-ai/extensions/outcome",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Outcome"
       },
@@ -798,9 +798,9 @@
       "inlineSchema": "{\"enum\": [\"success\", \"partial\", \"reflex_stop\", \"stuck\", \"abandoned\", \"failed\"]}"
     },
     {
-      "id": "https://w3id.org/xapi/ai/extensions/telemetry",
+      "id": "https://w3id.org/xapi-ai/extensions/telemetry",
       "type": "ResultExtension",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Telemetry window"
       },
@@ -812,17 +812,17 @@
   ],
   "templates": [
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-perception",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-perception",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron perception record"
       },
       "definition": {
         "en": "A Holocron `perception` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -832,38 +832,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "perception"
@@ -872,17 +872,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-thought",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-thought",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron thought record"
       },
       "definition": {
         "en": "A Holocron `thought` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/reasoned",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/reasoned",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -892,38 +892,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "thought"
@@ -932,17 +932,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-decision",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-decision",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron decision record"
       },
       "definition": {
         "en": "A Holocron `decision` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/decided",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/decided",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -952,38 +952,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "decision"
@@ -992,17 +992,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-action",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-action",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron action record"
       },
       "definition": {
         "en": "A Holocron `action` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/performed",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/performed",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1012,61 +1012,61 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "action"
           ]
         },
         {
-          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/outcome']",
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/outcome']",
           "presence": "recommended"
         }
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-communication",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-communication",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron communication record"
       },
       "definition": {
         "en": "A Holocron `communication` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/communicated",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/communicated",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1076,38 +1076,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "communication"
@@ -1120,9 +1120,9 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-event",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-event",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron event record"
       },
@@ -1130,7 +1130,7 @@
         "en": "A Holocron `event` record exported as a statement."
       },
       "verb": "http://adlnet.gov/expapi/verbs/experienced",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1140,38 +1140,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "event"
@@ -1180,17 +1180,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-lesson",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-lesson",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron lesson record"
       },
       "definition": {
         "en": "A Holocron `lesson` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/learned",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/learned",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1200,38 +1200,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "lesson"
@@ -1240,17 +1240,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-policy",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-policy",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron policy record"
       },
       "definition": {
         "en": "A Holocron `policy` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/set-policy",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/set-policy",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1260,38 +1260,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "policy"
@@ -1300,17 +1300,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/holocron-system",
+      "id": "https://w3id.org/xapi-ai/templates/holocron-system",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Holocron system record"
       },
       "definition": {
         "en": "A Holocron `system` record exported as a statement."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/reported",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/reported",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1320,38 +1320,38 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/record-type']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
           "presence": "included",
           "all": [
             "system"
@@ -1360,17 +1360,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/telemetry-pose",
+      "id": "https://w3id.org/xapi-ai/templates/telemetry-pose",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Telemetry: pose window"
       },
       "definition": {
         "en": "A perception record tagged telemetry whose payload is a pose window."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1380,45 +1380,45 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
         },
         {
-          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",
           "presence": "included",
           "all": [
             "pose"
@@ -1427,17 +1427,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/telemetry-navigation",
+      "id": "https://w3id.org/xapi-ai/templates/telemetry-navigation",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Telemetry: navigation window"
       },
       "definition": {
         "en": "A perception record tagged telemetry whose payload is a navigation window."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1447,45 +1447,45 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
         },
         {
-          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",
           "presence": "included",
           "all": [
             "navigation"
@@ -1494,17 +1494,17 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi/ai/templates/telemetry-sensor",
+      "id": "https://w3id.org/xapi-ai/templates/telemetry-sensor",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi/ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
       "prefLabel": {
         "en": "Telemetry: sensor window"
       },
       "definition": {
         "en": "A perception record tagged telemetry whose payload is a sensor window."
       },
-      "verb": "https://w3id.org/xapi/ai/verbs/perceived",
-      "objectActivityType": "https://w3id.org/xapi/ai/activity-type/record",
+      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
           "location": "$.actor.account.homePage",
@@ -1514,45 +1514,45 @@
           "location": "$.object.definition.type",
           "presence": "included",
           "all": [
-            "https://w3id.org/xapi/ai/activity-type/record"
+            "https://w3id.org/xapi-ai/activity-type/record"
           ]
         },
         {
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi/ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0"
           ]
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/seq']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/prev-hash']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/signature']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/mapping-version']",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
           "presence": "included"
         },
         {
-          "location": "$.context.extensions['https://w3id.org/xapi/ai/extensions/holocron/tags'][*]",
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
         },
         {
-          "location": "$.result.extensions['https://w3id.org/xapi/ai/extensions/telemetry'].kind",
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",
           "presence": "included",
           "all": [
             "sensor"

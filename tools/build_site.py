@@ -11,7 +11,7 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = "https://w3id.org/xapi/ai/"
+BASE = "https://w3id.org/xapi-ai/"
 p = json.loads((ROOT / "ai_agent_actions_profile.json").read_text())
 
 

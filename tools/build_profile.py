@@ -9,7 +9,7 @@ Glossary of Digital Learning via SKOS match properties.
 import json
 from pathlib import Path
 
-BASE = "https://w3id.org/xapi/ai"
+BASE = "https://w3id.org/xapi-ai"
 PROFILE = f"{BASE}/profile"
 V09 = f"{PROFILE}/0.9.0"
 V010 = f"{PROFILE}/0.10.0"

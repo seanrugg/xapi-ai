@@ -9,4 +9,6 @@ An xAPI profile for recording what AI agents do, and, since 0.10.0, what robots,
 - `examples/`: example statements.
 - `docs/`: the GitHub Pages site (built by `tools/build_site.py`): a readable page with one anchor per concept, and `profile.json`.
 
-Base IRI `https://w3id.org/xapi/ai/` (registration with w3id.org pending).
+Base IRI `https://w3id.org/xapi-ai/`, redirecting to the [GitHub Pages site](https://seanrugg.github.io/xapi-ai/) (JSON-LD for machines, HTML for people).
+
+**IRI change in 0.10.0:** 0.9.0 drafted its IRIs under `https://w3id.org/xapi/ai/`. That w3id.org folder belonged to ADL, which no longer maintains it, so those IRIs could never resolve. 0.10.0 moves every IRI (0.9.0's included, same paths) to `https://w3id.org/xapi-ai/`. 0.9.0 was never registered or published, so nothing in the wild depends on the old form.

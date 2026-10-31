@@ -10,7 +10,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/instructed",
+      "id": "https://w3id.org/xapi-ai/verbs/instructed",
       "display": {
         "en": "instructed"
       }
@@ -18,7 +18,7 @@
     "object": {
       "id": "https://ops.example.domain/tasks/ops-9087",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/task",
+        "type": "https://w3id.org/xapi-ai/activity-type/task",
         "name": {
           "en": "Generate weekly readiness report"
         }
@@ -35,16 +35,16 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/policy-ids": [
+        "https://w3id.org/xapi-ai/extensions/policy-ids": [
           "POL-RED-TEAM-01"
         ],
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577",
-        "https://w3id.org/xapi/ai/extensions/priority": "high"
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577",
+        "https://w3id.org/xapi-ai/extensions/priority": "high"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -61,7 +61,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/planned",
+      "id": "https://w3id.org/xapi-ai/verbs/planned",
       "display": {
         "en": "planned"
       }
@@ -69,7 +69,7 @@
     "object": {
       "id": "https://ops.example.domain/tasks/ops-9087",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/task",
+        "type": "https://w3id.org/xapi-ai/activity-type/task",
         "name": {
           "en": "Generate weekly readiness report"
         }
@@ -79,8 +79,8 @@
     "result": {
       "success": true,
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/model-id": "gpt-x-ops-2026",
-        "https://w3id.org/xapi/ai/extensions/output-tokens": 220
+        "https://w3id.org/xapi-ai/extensions/model-id": "gpt-x-ops-2026",
+        "https://w3id.org/xapi-ai/extensions/output-tokens": 220
       }
     },
     "context": {
@@ -99,13 +99,13 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/run-id": "run-9012",
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577"
+        "https://w3id.org/xapi-ai/extensions/run-id": "run-9012",
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -122,7 +122,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/read-resource",
+      "id": "https://w3id.org/xapi-ai/verbs/read-resource",
       "display": {
         "en": "read resource"
       }
@@ -130,7 +130,7 @@
     "object": {
       "id": "https://db.example.domain/finance/ledger-fy26",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/resource",
+        "type": "https://w3id.org/xapi-ai/activity-type/resource",
         "name": {
           "en": "Finance Ledger FY26"
         }
@@ -157,14 +157,14 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://db.example.domain/finance/ledger-fy26",
-        "https://w3id.org/xapi/ai/extensions/resource-hash": "sha256:2b7e151628aed2a6abf7158809cf4f3c",
-        "https://w3id.org/xapi/ai/extensions/resource-version": "v1"
+        "https://w3id.org/xapi-ai/extensions/resource-uri": "https://db.example.domain/finance/ledger-fy26",
+        "https://w3id.org/xapi-ai/extensions/resource-hash": "sha256:2b7e151628aed2a6abf7158809cf4f3c",
+        "https://w3id.org/xapi-ai/extensions/resource-version": "v1"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -181,7 +181,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/invoked-tool",
+      "id": "https://w3id.org/xapi-ai/verbs/invoked-tool",
       "display": {
         "en": "invoked tool"
       }
@@ -189,7 +189,7 @@
     "object": {
       "id": "https://tools.example.domain/mcp/finance-summary",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/tool",
+        "type": "https://w3id.org/xapi-ai/activity-type/tool",
         "name": {
           "en": "finance-summary"
         },
@@ -203,10 +203,10 @@
       "success": true,
       "duration": "PT3.42S",
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/latency-ms": 3421,
-        "https://w3id.org/xapi/ai/extensions/input-tokens": 1280,
-        "https://w3id.org/xapi/ai/extensions/output-tokens": 512,
-        "https://w3id.org/xapi/ai/extensions/cost": 0.0132
+        "https://w3id.org/xapi-ai/extensions/latency-ms": 3421,
+        "https://w3id.org/xapi-ai/extensions/input-tokens": 1280,
+        "https://w3id.org/xapi-ai/extensions/output-tokens": 512,
+        "https://w3id.org/xapi-ai/extensions/cost": 0.0132
       }
     },
     "context": {
@@ -225,21 +225,21 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/mcp-server-id": "mcp-finance@v1",
-        "https://w3id.org/xapi/ai/extensions/mcp-client-id": "ops-orchestrator",
-        "https://w3id.org/xapi/ai/extensions/mcp-connection": "sse",
-        "https://w3id.org/xapi/ai/extensions/tool-parameters": {
+        "https://w3id.org/xapi-ai/extensions/mcp-server-id": "mcp-finance@v1",
+        "https://w3id.org/xapi-ai/extensions/mcp-client-id": "ops-orchestrator",
+        "https://w3id.org/xapi-ai/extensions/mcp-connection": "sse",
+        "https://w3id.org/xapi-ai/extensions/tool-parameters": {
           "fiscal_year": 2026,
           "units": "USD"
         },
-        "https://w3id.org/xapi/ai/extensions/model-id": "gpt-x-ops-2026",
-        "https://w3id.org/xapi/ai/extensions/run-id": "run-9012",
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577"
+        "https://w3id.org/xapi-ai/extensions/model-id": "gpt-x-ops-2026",
+        "https://w3id.org/xapi-ai/extensions/run-id": "run-9012",
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -256,7 +256,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/generated",
+      "id": "https://w3id.org/xapi-ai/verbs/generated",
       "display": {
         "en": "generated"
       }
@@ -264,7 +264,7 @@
     "object": {
       "id": "https://ops.example.domain/prompts/report-template-v3",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/prompt",
+        "type": "https://w3id.org/xapi-ai/activity-type/prompt",
         "name": {
           "en": "Readiness report template"
         }
@@ -274,8 +274,8 @@
     "result": {
       "success": true,
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/output-tokens": 1870,
-        "https://w3id.org/xapi/ai/extensions/latency-ms": 4890
+        "https://w3id.org/xapi-ai/extensions/output-tokens": 1870,
+        "https://w3id.org/xapi-ai/extensions/latency-ms": 4890
       }
     },
     "context": {
@@ -288,13 +288,13 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/run-id": "run-9012",
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577"
+        "https://w3id.org/xapi-ai/extensions/run-id": "run-9012",
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577"
       }
     },
     "attachments": [
@@ -325,7 +325,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/wrote-resource",
+      "id": "https://w3id.org/xapi-ai/verbs/wrote-resource",
       "display": {
         "en": "wrote resource"
       }
@@ -333,7 +333,7 @@
     "object": {
       "id": "https://reports.example.domain/readiness/week-04-FY26.pdf",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/resource",
+        "type": "https://w3id.org/xapi-ai/activity-type/resource",
         "name": {
           "en": "Weekly Readiness Report PDF"
         }
@@ -360,14 +360,14 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://reports.example.domain/readiness/week-04-FY26.pdf",
-        "https://w3id.org/xapi/ai/extensions/resource-hash": "sha256:9b74c9897bac770ffc029102a200c5de",
-        "https://w3id.org/xapi/ai/extensions/resource-version": "v1"
+        "https://w3id.org/xapi-ai/extensions/resource-uri": "https://reports.example.domain/readiness/week-04-FY26.pdf",
+        "https://w3id.org/xapi-ai/extensions/resource-hash": "sha256:9b74c9897bac770ffc029102a200c5de",
+        "https://w3id.org/xapi-ai/extensions/resource-version": "v1"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -384,7 +384,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/approved",
+      "id": "https://w3id.org/xapi-ai/verbs/approved",
       "display": {
         "en": "approved"
       }
@@ -392,7 +392,7 @@
     "object": {
       "id": "https://reports.example.domain/readiness/week-04-FY26.pdf",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/resource",
+        "type": "https://w3id.org/xapi-ai/activity-type/resource",
         "name": {
           "en": "Weekly Readiness Report PDF"
         }
@@ -412,15 +412,15 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/policy-ids": [
+        "https://w3id.org/xapi-ai/extensions/policy-ids": [
           "POL-RELEASE-OK"
         ],
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577"
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
@@ -437,7 +437,7 @@
       }
     },
     "verb": {
-      "id": "https://w3id.org/xapi/ai/verbs/delegated",
+      "id": "https://w3id.org/xapi-ai/verbs/delegated",
       "display": {
         "en": "delegated"
       }
@@ -445,7 +445,7 @@
     "object": {
       "id": "https://agents.example.domain/agent/dataagent-bravo",
       "definition": {
-        "type": "https://w3id.org/xapi/ai/activity-type/agent",
+        "type": "https://w3id.org/xapi-ai/activity-type/agent",
         "name": {
           "en": "DataAgent-Bravo"
         }
@@ -455,8 +455,8 @@
     "result": {
       "success": true,
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/trace-id": "trace-7788",
-        "https://w3id.org/xapi/ai/extensions/parent-run-id": "run-9012"
+        "https://w3id.org/xapi-ai/extensions/trace-id": "trace-7788",
+        "https://w3id.org/xapi-ai/extensions/parent-run-id": "run-9012"
       }
     },
     "context": {
@@ -475,13 +475,13 @@
         ],
         "category": [
           {
-            "id": "https://w3id.org/xapi/ai/profile"
+            "id": "https://w3id.org/xapi-ai/profile"
           }
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/run-id": "run-9012-sub-1",
-        "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577"
+        "https://w3id.org/xapi-ai/extensions/run-id": "run-9012-sub-1",
+        "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577"
       }
     },
     "timestamp": "2026-01-29T17:54:30Z",
