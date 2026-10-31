@@ -10,7 +10,7 @@ Below is a **proposed xAPI Profile** you can adopt (and iterate on) to **capture
 ## 1) Profile Overview
 
 *   **Profile name:** *xAPI AI Agent Actions Profile* (AIAAP)
-*   **Profile IRI (proposed, registerable):** `https://w3id.org/xapi/ai/profile`
+*   **Profile IRI (proposed, registerable):** `https://w3id.org/xapi-ai/profile`
 *   **Version:** `0.9.0 (Draft)`
 *   **Scope:** Capturing **human instructions**, **AI planning/decision steps**, **MCP tool calls**, **resource access**, **content generation**, **inter‑agent delegation**, and **outcomes** (success, error, cost, latency, tokens).
 *   **Intended storage/analytics:** Any **LRS** or observability pipeline capable of xAPI ingestion, query, and dashboarding. [\[xapi.com\]](https://xapi.com/overview/), [\[adlnet.gov\]](https://adlnet.gov/research/performance-tracking-analysis/experience-api/)
@@ -30,10 +30,10 @@ Below is a **proposed xAPI Profile** you can adopt (and iterate on) to **capture
 
 ## 3) Namespaces & Base IRIs (Proposed)
 
-*   **Profile:** `https://w3id.org/xapi/ai/profile`
-*   **Verbs:** `https://w3id.org/xapi/ai/verbs/`
-*   **Activity Types:** `https://w3id.org/xapi/ai/activity-type/`
-*   **Extensions:** `https://w3id.org/xapi/ai/extensions/`
+*   **Profile:** `https://w3id.org/xapi-ai/profile`
+*   **Verbs:** `https://w3id.org/xapi-ai/verbs/`
+*   **Activity Types:** `https://w3id.org/xapi-ai/activity-type/`
+*   **Extensions:** `https://w3id.org/xapi-ai/extensions/`
 
 > The **w3id** convention is widely used by xAPI profiles (e.g., xAPI Video Profile); IRIs are required and should resolve or be documented. [\[xapi.com.au\]](https://xapi.com.au/what-is-xapi/), [\[github.com\]](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md)
 
@@ -45,37 +45,37 @@ Below is a **proposed xAPI Profile** you can adopt (and iterate on) to **capture
 
 > All verbs are **English display** examples; provide additional language maps as needed. [\[github.com\]](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md)
 
-*   **Instructed** — `https://w3id.org/xapi/ai/verbs/instructed`  
+*   **Instructed** — `https://w3id.org/xapi-ai/verbs/instructed`  
     *Human or system issued an instruction to an AI agent to perform a task.*
 
-*   **Planned** — `https://w3id.org/xapi/ai/verbs/planned`  
+*   **Planned** — `https://w3id.org/xapi-ai/verbs/planned`  
     *AI agent produced a plan or chain of steps prior to execution.*
 
-*   **Delegated** — `https://w3id.org/xapi/ai/verbs/delegated`  
+*   **Delegated** — `https://w3id.org/xapi-ai/verbs/delegated`  
     *AI agent handed off a subtask to another agent.*
 
-*   **Invoked tool** — `https://w3id.org/xapi/ai/verbs/invoked-tool`  
+*   **Invoked tool** — `https://w3id.org/xapi-ai/verbs/invoked-tool`  
     *AI agent called a tool (e.g., via MCP tools interface) with parameters.* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture), [\[developer.ibm.com\]](https://developer.ibm.com/articles/mcp-architecture-patterns-ai-systems)
 
-*   **Read resource** — `https://w3id.org/xapi/ai/verbs/read-resource`  
+*   **Read resource** — `https://w3id.org/xapi-ai/verbs/read-resource`  
     *AI agent retrieved context from a resource (file, DB, API, knowledge base).* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture)
 
-*   **Wrote resource** — `https://w3id.org/xapi/ai/verbs/wrote-resource`  
+*   **Wrote resource** — `https://w3id.org/xapi-ai/verbs/wrote-resource`  
     *AI agent persisted or updated content in a resource.*
 
-*   **Generated** — `https://w3id.org/xapi/ai/verbs/generated`  
+*   **Generated** — `https://w3id.org/xapi-ai/verbs/generated`  
     *AI agent produced an output (text, code, image, report).*
 
-*   **Evaluated** — `https://w3id.org/xapi/ai/verbs/evaluated`  
+*   **Evaluated** — `https://w3id.org/xapi-ai/verbs/evaluated`  
     *AI agent assessed content or results against criteria/policy.*
 
-*   **Approved** — `https://w3id.org/xapi/ai/verbs/approved`  
+*   **Approved** — `https://w3id.org/xapi-ai/verbs/approved`  
     *Human or supervising agent approved a plan or output.*
 
-*   **Rejected** — `https://w3id.org/xapi/ai/verbs/rejected`  
+*   **Rejected** — `https://w3id.org/xapi-ai/verbs/rejected`  
     *Human or supervising agent rejected a plan or output.*
 
-*   **Terminated** — `https://w3id.org/xapi/ai/verbs/terminated`  
+*   **Terminated** — `https://w3id.org/xapi-ai/verbs/terminated`  
     *Agent or human ended a run/session before completion.*
 
 > Use **language maps** for displays and **definition** fields per xAPI guidance. [\[github.com\]](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md)
@@ -84,15 +84,15 @@ Below is a **proposed xAPI Profile** you can adopt (and iterate on) to **capture
 
 ### 4.2 Activity Types
 
-*   **AI Agent** — `https://w3id.org/xapi/ai/activity-type/agent`
-*   **Human Operator** — `https://w3id.org/xapi/ai/activity-type/human`
-*   **Tool** — `https://w3id.org/xapi/ai/activity-type/tool` *(e.g., MCP tool server)* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture)
-*   **Resource** — `https://w3id.org/xapi/ai/activity-type/resource` *(file, DB table, API endpoint)* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture)
-*   **Prompt** — `https://w3id.org/xapi/ai/activity-type/prompt`
-*   **Model** — `https://w3id.org/xapi/ai/activity-type/model`
-*   **Model Session / Run** — `https://w3id.org/xapi/ai/activity-type/run`
-*   **Task** — `https://w3id.org/xapi/ai/activity-type/task`
-*   **Policy** — `https://w3id.org/xapi/ai/activity-type/policy`
+*   **AI Agent** — `https://w3id.org/xapi-ai/activity-type/agent`
+*   **Human Operator** — `https://w3id.org/xapi-ai/activity-type/human`
+*   **Tool** — `https://w3id.org/xapi-ai/activity-type/tool` *(e.g., MCP tool server)* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture)
+*   **Resource** — `https://w3id.org/xapi-ai/activity-type/resource` *(file, DB table, API endpoint)* [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture)
+*   **Prompt** — `https://w3id.org/xapi-ai/activity-type/prompt`
+*   **Model** — `https://w3id.org/xapi-ai/activity-type/model`
+*   **Model Session / Run** — `https://w3id.org/xapi-ai/activity-type/run`
+*   **Task** — `https://w3id.org/xapi-ai/activity-type/task`
+*   **Policy** — `https://w3id.org/xapi-ai/activity-type/policy`
 
 > Activities should include `definition.type` IRIs and optional metadata via `definition.extensions`. [\[github.com\]](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md)
 
@@ -103,34 +103,34 @@ Below is a **proposed xAPI Profile** you can adopt (and iterate on) to **capture
 Use **extensions** for operational telemetry and provenance. (Types may be strings, numbers, booleans, arrays, or objects per xAPI rules.) [\[github.com\]](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md)
 
 *   **MCP / Invocation Context**
-    *   `https://w3id.org/xapi/ai/extensions/mcp-server-id`
-    *   `https://w3id.org/xapi/ai/extensions/mcp-client-id`
-    *   `https://w3id.org/xapi/ai/extensions/mcp-connection` *(stdio|http|sse)* [\[developer.ibm.com\]](https://developer.ibm.com/articles/mcp-architecture-patterns-ai-systems)
-    *   `https://w3id.org/xapi/ai/extensions/tool-name`
-    *   `https://w3id.org/xapi/ai/extensions/tool-parameters` *(redact as needed)*
+    *   `https://w3id.org/xapi-ai/extensions/mcp-server-id`
+    *   `https://w3id.org/xapi-ai/extensions/mcp-client-id`
+    *   `https://w3id.org/xapi-ai/extensions/mcp-connection` *(stdio|http|sse)* [\[developer.ibm.com\]](https://developer.ibm.com/articles/mcp-architecture-patterns-ai-systems)
+    *   `https://w3id.org/xapi-ai/extensions/tool-name`
+    *   `https://w3id.org/xapi-ai/extensions/tool-parameters` *(redact as needed)*
 
 *   **Model & Generation**
-    *   `https://w3id.org/xapi/ai/extensions/model-id`
-    *   `https://w3id.org/xapi/ai/extensions/model-params` *(temperature, top\_p, etc.)*
-    *   `https://w3id.org/xapi/ai/extensions/input-tokens` / `output-tokens`
-    *   `https://w3id.org/xapi/ai/extensions/latency-ms`
-    *   `https://w3id.org/xapi/ai/extensions/cost` *(if available)*
+    *   `https://w3id.org/xapi-ai/extensions/model-id`
+    *   `https://w3id.org/xapi-ai/extensions/model-params` *(temperature, top\_p, etc.)*
+    *   `https://w3id.org/xapi-ai/extensions/input-tokens` / `output-tokens`
+    *   `https://w3id.org/xapi-ai/extensions/latency-ms`
+    *   `https://w3id.org/xapi-ai/extensions/cost` *(if available)*
 
 *   **Resources & Data**
-    *   `https://w3id.org/xapi/ai/extensions/resource-uri`
-    *   `https://w3id.org/xapi/ai/extensions/resource-hash`
-    *   `https://w3id.org/xapi/ai/extensions/resource-version`
+    *   `https://w3id.org/xapi-ai/extensions/resource-uri`
+    *   `https://w3id.org/xapi-ai/extensions/resource-hash`
+    *   `https://w3id.org/xapi-ai/extensions/resource-version`
 
 *   **Governance / Risk**
-    *   `https://w3id.org/xapi/ai/extensions/policy-ids`
-    *   `https://w3id.org/xapi/ai/extensions/risk-score`
-    *   `https://w3id.org/xapi/ai/extensions/anomaly` *(true/false; reason)*
+    *   `https://w3id.org/xapi-ai/extensions/policy-ids`
+    *   `https://w3id.org/xapi-ai/extensions/risk-score`
+    *   `https://w3id.org/xapi-ai/extensions/anomaly` *(true/false; reason)*
 
 *   **Traceability**
-    *   `https://w3id.org/xapi/ai/extensions/session-id`
-    *   `https://w3id.org/xapi/ai/extensions/run-id`
-    *   `https://w3id.org/xapi/ai/extensions/parent-run-id`
-    *   `https://w3id.org/xapi/ai/extensions/trace-id`
+    *   `https://w3id.org/xapi-ai/extensions/session-id`
+    *   `https://w3id.org/xapi-ai/extensions/run-id`
+    *   `https://w3id.org/xapi-ai/extensions/parent-run-id`
+    *   `https://w3id.org/xapi-ai/extensions/trace-id`
 
 > MCP distinguishes tools, resources, and prompts; these map cleanly into xAPI objects and extensions for traceability. [\[modelconte...rotocol.io\]](https://modelcontextprotocol.io/docs/learn/architecture), [\[spikeapi.com\]](https://www.spikeapi.com/blog/mcp-ai-explained)
 
@@ -179,13 +179,13 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
     "account": { "homePage": "https://id.example.mil", "name": "u-12345" }
   },
   "verb": {
-    "id": "https://w3id.org/xapi/ai/verbs/instructed",
+    "id": "https://w3id.org/xapi-ai/verbs/instructed",
     "display": { "en": "instructed" }
   },
   "object": {
     "id": "https://ops.example.mil/tasks/ops-9087",
     "definition": {
-      "type": "https://w3id.org/xapi/ai/activity-type/task",
+      "type": "https://w3id.org/xapi-ai/activity-type/task",
       "name": { "en": "Generate weekly readiness report" }
     },
     "objectType": "Activity"
@@ -193,12 +193,12 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
   "context": {
     "contextActivities": {
       "parent": [{ "id": "https://ops.example.mil/sessions/sess-5577", "objectType": "Activity" }],
-      "category": [{ "id": "https://w3id.org/xapi/ai/profile" }]
+      "category": [{ "id": "https://w3id.org/xapi-ai/profile" }]
     },
     "extensions": {
-      "https://w3id.org/xapi/ai/extensions/policy-ids": ["POL-RED-TEAM-01"],
-      "https://w3id.org/xapi/ai/extensions/session-id": "sess-5577",
-      "https://w3id.org/xapi/ai/extensions/priority": "high"
+      "https://w3id.org/xapi-ai/extensions/policy-ids": ["POL-RED-TEAM-01"],
+      "https://w3id.org/xapi-ai/extensions/session-id": "sess-5577",
+      "https://w3id.org/xapi-ai/extensions/priority": "high"
     }
   },
   "timestamp": "2026-01-29T18:05:12Z",
@@ -217,13 +217,13 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
     "account": { "homePage": "https://agents.example.mil", "name": "agent-alpha" }
   },
   "verb": {
-    "id": "https://w3id.org/xapi/ai/verbs/invoked-tool",
+    "id": "https://w3id.org/xapi-ai/verbs/invoked-tool",
     "display": { "en": "invoked tool" }
   },
   "object": {
     "id": "https://tools.example.mil/mcp/finance-summary",
     "definition": {
-      "type": "https://w3id.org/xapi/ai/activity-type/tool",
+      "type": "https://w3id.org/xapi-ai/activity-type/tool",
       "name": { "en": "finance-summary" },
       "description": { "en": "Aggregates spend and readiness KPIs" }
     },
@@ -233,27 +233,27 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
     "success": true,
     "duration": "PT3.42S",
     "extensions": {
-      "https://w3id.org/xapi/ai/extensions/latency-ms": 3421,
-      "https://w3id.org/xapi/ai/extensions/input-tokens": 1280,
-      "https://w3id.org/xapi/ai/extensions/output-tokens": 512,
-      "https://w3id.org/xapi/ai/extensions/cost": 0.0132
+      "https://w3id.org/xapi-ai/extensions/latency-ms": 3421,
+      "https://w3id.org/xapi-ai/extensions/input-tokens": 1280,
+      "https://w3id.org/xapi-ai/extensions/output-tokens": 512,
+      "https://w3id.org/xapi-ai/extensions/cost": 0.0132
     }
   },
   "context": {
     "contextActivities": {
       "parent": [{ "id": "https://ops.example.mil/runs/run-9012", "objectType": "Activity" }],
       "grouping": [{ "id": "https://ops.example.mil/sessions/sess-5577", "objectType": "Activity" }],
-      "category": [{ "id": "https://w3id.org/xapi/ai/profile" }]
+      "category": [{ "id": "https://w3id.org/xapi-ai/profile" }]
     },
     "extensions": {
-      "https://w3id.org/xapi/ai/extensions/mcp-server-id": "mcp-finance@v1",
-      "https://w3id.org/xapi/ai/extensions/mcp-client-id": "ops-orchestrator",
-      "https://w3id.org/xapi/ai/extensions/mcp-connection": "sse",
-      "https://w3id.org/xapi/ai/extensions/tool-parameters": {
+      "https://w3id.org/xapi-ai/extensions/mcp-server-id": "mcp-finance@v1",
+      "https://w3id.org/xapi-ai/extensions/mcp-client-id": "ops-orchestrator",
+      "https://w3id.org/xapi-ai/extensions/mcp-connection": "sse",
+      "https://w3id.org/xapi-ai/extensions/tool-parameters": {
         "fiscal_year": 2026,
         "units": "USD"
       },
-      "https://w3id.org/xapi/ai/extensions/model-id": "gpt-x-ops-2026"
+      "https://w3id.org/xapi-ai/extensions/model-id": "gpt-x-ops-2026"
     }
   },
   "timestamp": "2026-01-29T18:05:16Z",
@@ -272,13 +272,13 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
     "account": { "homePage": "https://agents.example.mil", "name": "agent-alpha" }
   },
   "verb": {
-    "id": "https://w3id.org/xapi/ai/verbs/generated",
+    "id": "https://w3id.org/xapi-ai/verbs/generated",
     "display": { "en": "generated" }
   },
   "object": {
     "id": "https://ops.example.mil/prompts/report-template-v3",
     "definition": {
-      "type": "https://w3id.org/xapi/ai/activity-type/prompt",
+      "type": "https://w3id.org/xapi-ai/activity-type/prompt",
       "name": { "en": "Readiness report template" }
     },
     "objectType": "Activity"
@@ -286,14 +286,14 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
   "result": {
     "success": true,
     "extensions": {
-      "https://w3id.org/xapi/ai/extensions/output-tokens": 1870,
-      "https://w3id.org/xapi/ai/extensions/latency-ms": 4890
+      "https://w3id.org/xapi-ai/extensions/output-tokens": 1870,
+      "https://w3id.org/xapi-ai/extensions/latency-ms": 4890
     }
   },
   "context": {
     "contextActivities": {
       "parent": [{ "id": "https://ops.example.mil/tasks/ops-9087", "objectType": "Activity" }],
-      "category": [{ "id": "https://w3id.org/xapi/ai/profile" }]
+      "category": [{ "id": "https://w3id.org/xapi-ai/profile" }]
     }
   },
   "attachments": [
@@ -338,20 +338,20 @@ Use **extensions** for operational telemetry and provenance. (Types may be strin
 
 ```json
 {
-  "id": "https://w3id.org/xapi/ai/profile",
+  "id": "https://w3id.org/xapi-ai/profile",
   "type": "Profile",
   "prefLabel": { "en": "xAPI AI Agent Actions Profile (AIAAP)" },
   "definition": {
     "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, and governance outcomes."
   },
-  "versions": [{ "id": "https://w3id.org/xapi/ai/profile/0.9.0" }],
+  "versions": [{ "id": "https://w3id.org/xapi-ai/profile/0.9.0" }],
   "concepts": [
-    { "id": "https://w3id.org/xapi/ai/verbs/instructed", "type": "Verb", "prefLabel": { "en": "instructed" } },
-    { "id": "https://w3id.org/xapi/ai/verbs/invoked-tool", "type": "Verb", "prefLabel": { "en": "invoked tool" } },
-    { "id": "https://w3id.org/xapi/ai/activity-type/tool", "type": "ActivityType", "prefLabel": { "en": "Tool" } },
-    { "id": "https://w3id.org/xapi/ai/activity-type/resource", "type": "ActivityType", "prefLabel": { "en": "Resource" } },
-    { "id": "https://w3id.org/xapi/ai/extensions/model-id", "type": "Extension", "prefLabel": { "en": "Model ID" } },
-    { "id": "https://w3id.org/xapi/ai/extensions/latency-ms", "type": "Extension", "prefLabel": { "en": "Latency (ms)" } }
+    { "id": "https://w3id.org/xapi-ai/verbs/instructed", "type": "Verb", "prefLabel": { "en": "instructed" } },
+    { "id": "https://w3id.org/xapi-ai/verbs/invoked-tool", "type": "Verb", "prefLabel": { "en": "invoked tool" } },
+    { "id": "https://w3id.org/xapi-ai/activity-type/tool", "type": "ActivityType", "prefLabel": { "en": "Tool" } },
+    { "id": "https://w3id.org/xapi-ai/activity-type/resource", "type": "ActivityType", "prefLabel": { "en": "Resource" } },
+    { "id": "https://w3id.org/xapi-ai/extensions/model-id", "type": "Extension", "prefLabel": { "en": "Model ID" } },
+    { "id": "https://w3id.org/xapi-ai/extensions/latency-ms", "type": "Extension", "prefLabel": { "en": "Latency (ms)" } }
   ]
 }
 ```
