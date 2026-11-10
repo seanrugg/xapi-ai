@@ -7,7 +7,7 @@
     "en": "xAPI AI Agent Actions Profile (AIAAP)"
   },
   "definition": {
-    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10.0 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, telemetry windows (pose, navigation, sensor), and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
+    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data from any sensor (0.10.1), full payloads, and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
   },
   "seeAlso": "https://github.com/seanrugg/xapi-ai",
   "author": {
@@ -16,6 +16,13 @@
     "url": "https://github.com/seanrugg"
   },
   "versions": [
+    {
+      "id": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "wasRevisionOf": [
+        "https://w3id.org/xapi-ai/profile/0.10.0"
+      ],
+      "generatedAtTime": "2026-11-10T00:00:00Z"
+    },
     {
       "id": "https://w3id.org/xapi-ai/profile/0.10.0",
       "wasRevisionOf": [
@@ -488,7 +495,7 @@
         "en": "perceived"
       },
       "definition": {
-        "en": "A robot or AI agent sensed something outside or inside its own body (camera, range sensor, battery, temperature)."
+        "en": "A robot or AI agent interpreted what it sensed into a claim about the world or about its own state (an obstacle ahead, a person present, docked, overheating). The raw readings behind it are \"sensed\" statements."
       },
       "broadMatch": [
         "https://id.i2idl.org/concepts/artificial-intelligence-ai"
@@ -685,7 +692,7 @@
         "en": "Payload hash"
       },
       "definition": {
-        "en": "SHA-256 of the record payload. The payload itself is not exported by default."
+        "en": "SHA-256 of the record payload (JCS)."
       },
       "inlineSchema": "{\"type\": \"string\", \"pattern\": \"^[0-9a-f]{64}$\"}"
     },
@@ -805,9 +812,60 @@
         "en": "Telemetry window"
       },
       "definition": {
-        "en": "A periodic sensor window: pose, navigation or sensor samples. Large windows are exported as a summary (samples_count, truncated: true)."
+        "en": "Data from a sensor, exported whole: pose, navigation, or readings from any sensor (sensor, modality, unit, samples of {t, v}). v may be a number, a list or an object, so any sensor's data element fits."
       },
-      "inlineSchema": "{\"type\": \"object\", \"required\": [\"kind\"], \"properties\": {\"kind\": {\"enum\": [\"pose\", \"navigation\", \"sensor\"]}, \"frame\": {\"type\": \"string\"}, \"sensor\": {\"type\": \"string\"}, \"unit\": {\"type\": \"string\"}, \"samples\": {\"type\": \"array\", \"items\": {\"type\": \"object\"}}, \"goal\": {}, \"status\": {\"enum\": [\"active\", \"reached\", \"failed\", \"cancelled\"]}, \"distance_remaining_m\": {\"type\": \"number\"}, \"progress\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"samples_count\": {\"type\": \"integer\"}, \"truncated\": {\"type\": \"boolean\"}}}"
+      "inlineSchema": "{\"type\": \"object\", \"required\": [\"kind\"], \"properties\": {\"kind\": {\"type\": \"string\", \"description\": \"pose, navigation, sensor, or any other kind the device defines\"}, \"frame\": {\"type\": \"string\"}, \"sensor\": {\"type\": \"string\", \"description\": \"the sensor's name on this device, e.g. front-tof, imu0\"}, \"modality\": {\"type\": \"string\", \"description\": \"what is measured, e.g. range, imu, temperature, battery, sound-level, light, gps, encoder, force, image-features\"}, \"unit\": {\"type\": \"string\", \"description\": \"UCUM unit code where one exists, e.g. mm, Cel, %, m/s2\"}, \"rate_hz\": {\"type\": \"number\"}, \"samples\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"required\": [\"t\"], \"properties\": {\"t\": {\"type\": \"number\"}, \"v\": {}}}}, \"stats\": {\"type\": \"object\", \"description\": \"optional window summary, e.g. min, max, mean, count\"}, \"goal\": {}, \"status\": {\"enum\": [\"active\", \"reached\", \"failed\", \"cancelled\"]}, \"distance_remaining_m\": {\"type\": \"number\"}, \"progress\": {\"type\": \"number\", \"minimum\": 0, \"maximum\": 1}, \"samples_count\": {\"type\": \"integer\"}, \"truncated\": {\"type\": \"boolean\"}}}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/verbs/sensed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "prefLabel": {
+        "en": "sensed"
+      },
+      "definition": {
+        "en": "A robot or AI agent recorded data from one of its sensors: any modality, raw or windowed readings, carried in the telemetry result extension. Interpretation of those readings is \"perceived\"."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/sensor",
+        "https://id.i2idl.org/concepts/streaming-learning-data"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/payload",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "prefLabel": {
+        "en": "Record payload"
+      },
+      "definition": {
+        "en": "The record's payload as signed, for every record type except sensor data (which uses the telemetry extension). Its JCS SHA-256 equals holocron/payload-hash."
+      },
+      "inlineSchema": "{\"type\": \"object\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/payload-purged",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "prefLabel": {
+        "en": "Payload purged"
+      },
+      "definition": {
+        "en": "True when the memory server had already purged the payload, so only the header crossed."
+      },
+      "inlineSchema": "{\"type\": \"boolean\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/holocron/header",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "prefLabel": {
+        "en": "Signed header"
+      },
+      "definition": {
+        "en": "The record's exact signed header bytes as a UTF-8 string. SHA-256 of it equals holocron/hash, so the statement can be verified offline with the author's public key."
+      },
+      "inlineSchema": "{\"type\": \"string\"}"
     }
   ],
   "templates": [
@@ -839,7 +897,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -867,6 +926,13 @@
           "presence": "included",
           "all": [
             "perception"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
+          "presence": "excluded",
+          "any": [
+            "telemetry"
           ]
         }
       ]
@@ -899,7 +965,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -959,7 +1026,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1019,7 +1087,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1083,7 +1152,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1147,7 +1217,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1207,7 +1278,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1267,7 +1339,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1327,7 +1400,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1360,16 +1434,16 @@
       ]
     },
     {
-      "id": "https://w3id.org/xapi-ai/templates/telemetry-pose",
+      "id": "https://w3id.org/xapi-ai/templates/sensed",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
       "prefLabel": {
-        "en": "Telemetry: pose window"
+        "en": "Sensed: data from any sensor"
       },
       "definition": {
-        "en": "A perception record tagged telemetry whose payload is a pose window."
+        "en": "A perception record tagged telemetry: data from any sensor, exported whole in the telemetry extension."
       },
-      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "verb": "https://w3id.org/xapi-ai/verbs/sensed",
       "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
@@ -1387,7 +1461,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1411,11 +1486,94 @@
           "presence": "included"
         },
         {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "perception"
+          ]
+        },
+        {
           "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry']",
+          "presence": "included"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/templates/telemetry-pose",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
+      "prefLabel": {
+        "en": "Telemetry: pose window"
+      },
+      "definition": {
+        "en": "Sensed data whose telemetry kind is pose. Refines the sensed template."
+      },
+      "verb": "https://w3id.org/xapi-ai/verbs/sensed",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.object.definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi-ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/seq']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/prev-hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "perception"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
+          "presence": "included",
+          "any": [
+            "telemetry"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry']",
+          "presence": "included"
         },
         {
           "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",
@@ -1429,14 +1587,14 @@
     {
       "id": "https://w3id.org/xapi-ai/templates/telemetry-navigation",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
       "prefLabel": {
         "en": "Telemetry: navigation window"
       },
       "definition": {
-        "en": "A perception record tagged telemetry whose payload is a navigation window."
+        "en": "Sensed data whose telemetry kind is navigation. Refines the sensed template."
       },
-      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "verb": "https://w3id.org/xapi-ai/verbs/sensed",
       "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
@@ -1454,7 +1612,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1478,11 +1637,22 @@
           "presence": "included"
         },
         {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "perception"
+          ]
+        },
+        {
           "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry']",
+          "presence": "included"
         },
         {
           "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",
@@ -1496,14 +1666,14 @@
     {
       "id": "https://w3id.org/xapi-ai/templates/telemetry-sensor",
       "type": "StatementTemplate",
-      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.0",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.10.1",
       "prefLabel": {
         "en": "Telemetry: sensor window"
       },
       "definition": {
-        "en": "A perception record tagged telemetry whose payload is a sensor window."
+        "en": "Sensed data whose telemetry kind is sensor. Refines the sensed template."
       },
-      "verb": "https://w3id.org/xapi-ai/verbs/perceived",
+      "verb": "https://w3id.org/xapi-ai/verbs/sensed",
       "objectActivityType": "https://w3id.org/xapi-ai/activity-type/record",
       "rules": [
         {
@@ -1521,7 +1691,8 @@
           "location": "$.context.contextActivities.category[*].id",
           "presence": "included",
           "any": [
-            "https://w3id.org/xapi-ai/profile/0.10.0"
+            "https://w3id.org/xapi-ai/profile/0.10.0",
+            "https://w3id.org/xapi-ai/profile/0.10.1"
           ]
         },
         {
@@ -1545,11 +1716,22 @@
           "presence": "included"
         },
         {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/record-type']",
+          "presence": "included",
+          "all": [
+            "perception"
+          ]
+        },
+        {
           "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/tags'][*]",
           "presence": "included",
           "any": [
             "telemetry"
           ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry']",
+          "presence": "included"
         },
         {
           "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/telemetry'].kind",

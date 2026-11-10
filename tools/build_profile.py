@@ -4,7 +4,9 @@ Run:  python3 tools/build_profile.py   (writes ../ai_agent_actions_profile.json)
 
 0.9.0 vocabulary is kept unchanged (same IRIs). 0.10.0 adds the robotics /
 physical-AI module used by Holocron (LTMS) exports, aligned with the I2IDL
-Glossary of Digital Learning via SKOS match properties.
+Glossary of Digital Learning via SKOS match properties. 0.10.1 separates
+sensing (raw sensor data, verb "sensed") from perception (interpretation, verb
+"perceived"), opens telemetry to any sensor, and exports full payloads.
 """
 import json
 from pathlib import Path
@@ -13,6 +15,7 @@ BASE = "https://w3id.org/xapi-ai"
 PROFILE = f"{BASE}/profile"
 V09 = f"{PROFILE}/0.9.0"
 V010 = f"{PROFILE}/0.10.0"
+V0101 = f"{PROFILE}/0.10.1"
 G = "https://id.i2idl.org/concepts/"   # I2IDL Glossary, publication v0.0.93
 ADL = "http://adlnet.gov/expapi/verbs/"
 
@@ -78,7 +81,8 @@ V09_EXT = [  # (slug, label, definition, kind)
 # properties xAPI Profiles allow (broadMatch, narrowMatch, relatedMatch, exactMatch); record types with no glossary concept are listed in GAPS.md.
 V010_VERBS = [
     ("perceived", "perceived",
-     "A robot or AI agent sensed something outside or inside its own body (camera, range sensor, battery, temperature).",
+     "A robot or AI agent interpreted what it sensed into a claim about the world or about its own state "
+     "(an obstacle ahead, a person present, docked, overheating). The raw readings behind it are \"sensed\" statements.",
      {"broadMatch": [G + "artificial-intelligence-ai"]}),
     ("reasoned", "reasoned",
      "An agent reasoned without committing to act: a plan, prediction, question or interpretation.",
@@ -92,6 +96,13 @@ V010_VERBS = [
      {"relatedMatch": [G + "experiential-learning", G + "knowledge-retention", G + "feedback-loop"]}),
     ("set-policy", "set policy", "An operator issued a rule that constrains agent or swarm behavior.", {}),
     ("reported", "reported", "The memory server recorded a system fact (startup, key change, integrity result).", {}),
+]
+# 0.10.1: sensing as its own verb. Introduced in V0101.
+V0101_VERBS = [
+    ("sensed", "sensed",
+     "A robot or AI agent recorded data from one of its sensors: any modality, raw or windowed readings, "
+     "carried in the telemetry result extension. Interpretation of those readings is \"perceived\".",
+     {"relatedMatch": [G + "sensor", G + "streaming-learning-data"]}),
 ]
 V010_TYPES = [
     ("record", "Holocron Record",
@@ -109,11 +120,15 @@ SCHEMA_TELEMETRY = {
     "type": "object",
     "required": ["kind"],
     "properties": {
-        "kind": {"enum": ["pose", "navigation", "sensor"]},
+        "kind": {"type": "string", "description": "pose, navigation, sensor, or any other kind the device defines"},
         "frame": {"type": "string"},
-        "sensor": {"type": "string"},
-        "unit": {"type": "string"},
-        "samples": {"type": "array", "items": {"type": "object"}},
+        "sensor": {"type": "string", "description": "the sensor's name on this device, e.g. front-tof, imu0"},
+        "modality": {"type": "string", "description": "what is measured, e.g. range, imu, temperature, battery, sound-level, light, gps, encoder, force, image-features"},
+        "unit": {"type": "string", "description": "UCUM unit code where one exists, e.g. mm, Cel, %, m/s2"},
+        "rate_hz": {"type": "number"},
+        "samples": {"type": "array", "items": {"type": "object", "required": ["t"],
+                    "properties": {"t": {"type": "number"}, "v": {}}}},
+        "stats": {"type": "object", "description": "optional window summary, e.g. min, max, mean, count"},
         "goal": {},
         "status": {"enum": ["active", "reached", "failed", "cancelled"]},
         "distance_remaining_m": {"type": "number"},
@@ -129,7 +144,7 @@ V010_EXT = [  # (slug, label, definition, kind, extra)
      "ContextExtension", {"inlineSchema": json.dumps({"type": "string", "pattern": "^[0-9a-f]{64}$"})}),
     ("holocron/prev-hash", "Previous record hash", "Hash of the agent's previous record (hash chain).",
      "ContextExtension", {"inlineSchema": json.dumps({"type": "string", "pattern": "^[0-9a-f]{64}$"})}),
-    ("holocron/payload-hash", "Payload hash", "SHA-256 of the record payload. The payload itself is not exported by default.",
+    ("holocron/payload-hash", "Payload hash", "SHA-256 of the record payload (JCS).",
      "ContextExtension", {"inlineSchema": json.dumps({"type": "string", "pattern": "^[0-9a-f]{64}$"})}),
     ("holocron/signature", "Record signature", "The author's Ed25519 signature over the record (hex).",
      "ContextExtension", {"inlineSchema": json.dumps({"type": "string"})}),
@@ -156,8 +171,19 @@ V010_EXT = [  # (slug, label, definition, kind, extra)
      "ResultExtension", {"inlineSchema": json.dumps({"enum": ["success", "partial", "reflex_stop", "stuck",
                                                                "abandoned", "failed"]})}),
     ("telemetry", "Telemetry window",
-     "A periodic sensor window: pose, navigation or sensor samples. Large windows are exported as a summary "
-     "(samples_count, truncated: true).", "ResultExtension", {"inlineSchema": json.dumps(SCHEMA_TELEMETRY)}),
+     "Data from a sensor, exported whole: pose, navigation, or readings from any sensor (sensor, modality, unit, "
+     "samples of {t, v}). v may be a number, a list or an object, so any sensor's data element fits.",
+     "ResultExtension", {"inlineSchema": json.dumps(SCHEMA_TELEMETRY)}),
+]
+V0101_EXT = [
+    ("holocron/payload", "Record payload", "The record's payload as signed, for every record type except sensor data "
+     "(which uses the telemetry extension). Its JCS SHA-256 equals holocron/payload-hash.", "ContextExtension",
+     {"inlineSchema": json.dumps({"type": "object"})}),
+    ("holocron/payload-purged", "Payload purged", "True when the memory server had already purged the payload, so only "
+     "the header crossed.", "ContextExtension", {"inlineSchema": json.dumps({"type": "boolean"})}),
+    ("holocron/header", "Signed header", "The record's exact signed header bytes as a UTF-8 string. SHA-256 of it equals "
+     "holocron/hash, so the statement can be verified offline with the author's public key.", "ContextExtension",
+     {"inlineSchema": json.dumps({"type": "string"})}),
 ]
 
 # Record type -> verb (event uses ADL "experienced").
@@ -168,6 +194,7 @@ RECORD_VERBS = {
     "lesson": f"{BASE}/verbs/learned", "policy": f"{BASE}/verbs/set-policy",
     "system": f"{BASE}/verbs/reported",
 }
+SENSED = f"{BASE}/verbs/sensed"  # perception tagged telemetry
 EXT = f"{BASE}/extensions/"
 
 
@@ -180,7 +207,7 @@ def templates():
     common = [
         {"location": "$.actor.account.homePage", "presence": "included"},
         {"location": "$.object.definition.type", "presence": "included", "all": [f"{BASE}/activity-type/record"]},
-        {"location": "$.context.contextActivities.category[*].id", "presence": "included", "any": [V010]},
+        {"location": "$.context.contextActivities.category[*].id", "presence": "included", "any": [V010, V0101]},
         {"location": ctx_ext("holocron/seq"), "presence": "included"},
         {"location": ctx_ext("holocron/hash"), "presence": "included"},
         {"location": ctx_ext("holocron/prev-hash"), "presence": "included"},
@@ -191,6 +218,8 @@ def templates():
         rules = common + [{"location": ctx_ext("holocron/record-type"), "presence": "included", "all": [rtype]}]
         if rtype == "action":
             rules.append({"location": f"$.result.extensions['{EXT}outcome']", "presence": "recommended"})
+        if rtype == "perception":
+            rules.append({"location": ctx_ext("holocron/tags") + "[*]", "presence": "excluded", "any": ["telemetry"]})
         if rtype == "communication":
             rules.append({"location": "$.context.contextAgents", "presence": "recommended"})
         out.append({
@@ -199,14 +228,25 @@ def templates():
             "definition": {"en": f"A Holocron `{rtype}` record exported as a statement."},
             "verb": verb, "objectActivityType": f"{BASE}/activity-type/record", "rules": rules,
         })
+    sensed_rules = common + [
+        {"location": ctx_ext("holocron/record-type"), "presence": "included", "all": ["perception"]},
+        {"location": ctx_ext("holocron/tags") + "[*]", "presence": "included", "any": ["telemetry"]},
+        {"location": f"$.result.extensions['{EXT}telemetry']", "presence": "included"},
+    ]
+    out.append({
+        "id": f"{BASE}/templates/sensed", "type": "StatementTemplate", "inScheme": V0101,
+        "prefLabel": {"en": "Sensed: data from any sensor"},
+        "definition": {"en": "A perception record tagged telemetry: data from any sensor, exported whole in the "
+                             "telemetry extension."},
+        "verb": SENSED, "objectActivityType": f"{BASE}/activity-type/record", "rules": sensed_rules,
+    })
     for kind, label in (("pose", "pose"), ("navigation", "navigation"), ("sensor", "sensor")):
         out.append({
-            "id": f"{BASE}/templates/telemetry-{kind}", "type": "StatementTemplate", "inScheme": V010,
+            "id": f"{BASE}/templates/telemetry-{kind}", "type": "StatementTemplate", "inScheme": V0101,
             "prefLabel": {"en": f"Telemetry: {label} window"},
-            "definition": {"en": f"A perception record tagged telemetry whose payload is a {label} window."},
-            "verb": RECORD_VERBS["perception"], "objectActivityType": f"{BASE}/activity-type/record",
-            "rules": common + [
-                {"location": ctx_ext("holocron/tags") + "[*]", "presence": "included", "any": ["telemetry"]},
+            "definition": {"en": f"Sensed data whose telemetry kind is {label}. Refines the sensed template."},
+            "verb": SENSED, "objectActivityType": f"{BASE}/activity-type/record",
+            "rules": sensed_rules + [
                 {"location": f"$.result.extensions['{EXT}telemetry'].kind", "presence": "included", "all": [kind]},
             ],
         })
@@ -221,6 +261,8 @@ def build():
     concepts += [concept("Verb", f"verbs/{s}", l, d, V010, **x) for s, l, d, x in V010_VERBS]
     concepts += [concept("ActivityType", f"activity-type/{s}", l, d, V010, **x) for s, l, d, x in V010_TYPES]
     concepts += [concept(k, f"extensions/{s}", l, d, V010, **x) for s, l, d, k, x in V010_EXT]
+    concepts += [concept("Verb", f"verbs/{s}", l, d, V0101, **x) for s, l, d, x in V0101_VERBS]
+    concepts += [concept(k, f"extensions/{s}", l, d, V0101, **x) for s, l, d, k, x in V0101_EXT]
     return {
         "@context": "https://w3id.org/xapi/profiles/context",
         "id": PROFILE,
@@ -229,14 +271,15 @@ def build():
         "prefLabel": {"en": "xAPI AI Agent Actions Profile (AIAAP)"},
         "definition": {"en": (
             "Captures human instructions and AI agent operations, including MCP tool calls, resource access, "
-            "generation, delegation, evaluation, approvals and governance outcomes. Version 0.10.0 adds a robotics "
-            "and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, telemetry "
-            "windows (pose, navigation, sensor), and provenance extensions that let any statement be verified against "
+            "generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics "
+            "and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data "
+            "from any sensor (0.10.1), full payloads, and provenance extensions that let any statement be verified against "
             "its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) "
             "where a match exists.")},
         "seeAlso": "https://github.com/seanrugg/xapi-ai",
         "author": {"type": "Person", "name": "Sean Rugge", "url": "https://github.com/seanrugg"},
         "versions": [
+            {"id": V0101, "wasRevisionOf": [V010], "generatedAtTime": "2026-11-10T00:00:00Z"},
             {"id": V010, "wasRevisionOf": [V09], "generatedAtTime": "2026-10-31T00:00:00Z"},
             {"id": V09, "generatedAtTime": "2026-02-13T16:48:25Z"},
         ],

@@ -1,10 +1,11 @@
 # Glossary gaps (I2IDL Glossary of Digital Learning, v0.0.93)
 
-Checked 31 Oct 2026 through the glossary's public MCP endpoint (`https://id.i2idl.org/mcp`). These AIAAP 0.10.0 concepts have **no matching glossary concept**, or only a loose one. They are where learning-record vocabulary meets robots, hybrid AI and swarms, and are offered as feedback to I2IDL.
+Checked 31 Oct 2026 through the glossary's public MCP endpoint (`https://id.i2idl.org/mcp`). These AIAAP 0.10 concepts have **no matching glossary concept**, or only a loose one. They are where learning-record vocabulary meets robots, hybrid AI and swarms, and are offered as feedback to I2IDL.
 
 | AIAAP concept | Closest glossary concept | Gap |
 |---|---|---|
-| perceived (sensing) | `artificial-intelligence-ai` (broad) | No concept for sensing or perception by a machine or a person |
+| sensed | `sensor`, `streaming-learning-data` (related) | `sensor` names the device, not the act of sensing; no concept for a machine recording what it senses |
+| perceived | `artificial-intelligence-ai` (broad) | No concept for perception: interpreting sensed data into a claim about the world, by a machine or a person |
 | decided | none | No decision-making concept |
 | performed | none | No concept for an action taken in the physical world |
 | reasoned | `sensemaking`, `metacognition` (related) | No reasoning or planning concept |
