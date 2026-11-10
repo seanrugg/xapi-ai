@@ -8,14 +8,15 @@ It was designed for [LTMS / Holocron](https://github.com/seanrugg/ai_si_ltm), a 
 
 - **The memory server stays the log of record.** Statements are a derived, shareable view. Each carries the record's hash, previous hash and signature, so a reader can verify it against the source. Verification always goes back to the source.
 - **One record, one statement**, and the record is the statement's object (a uniform rule, easy to query).
-- **No payloads by default.** Only telemetry windows (below) export payload data, and large windows are summarized.
+- **Full payloads (0.10.1).** Anything the memory server receives is exported. Sensor data goes in the `telemetry` result extension; every other payload goes in `holocron/payload`. The exact signed header travels as `holocron/header`, so a statement verifies offline.
 - **Vocabulary authority:** where the [I2IDL Glossary of Digital Learning](https://id.i2idl.org/) has a matching concept, the profile links it with SKOS match properties. Gaps are listed in `GAPS.md`.
 
 ## Verbs (record type → verb)
 
 | Record type | Verb | IRI |
 |---|---|---|
-| `perception` | perceived | `https://w3id.org/xapi-ai/verbs/perceived` |
+| `perception` tagged `telemetry` | **sensed** (0.10.1) | `https://w3id.org/xapi-ai/verbs/sensed` |
+| `perception` (any other) | perceived | `https://w3id.org/xapi-ai/verbs/perceived` |
 | `thought` | reasoned | `https://w3id.org/xapi-ai/verbs/reasoned` |
 | `decision` | decided | `https://w3id.org/xapi-ai/verbs/decided` |
 | `action` | performed | `https://w3id.org/xapi-ai/verbs/performed` |
@@ -43,18 +44,40 @@ It was designed for [LTMS / Holocron](https://github.com/seanrugg/ai_si_ltm), a 
 | `context.contextAgents` (2.0.0) | each `peer` with relevant type `…/activity-type/peer-role`; the relaying hub with `…/activity-type/relay-role`. For 1.0.3 endpoints, peers go in `EXT+holocron/refs` only and `contextAgents` is omitted. |
 | `context.extensions` | `EXT+holocron/seq`, `/hash`, `/prev-hash`, `/payload-hash`, `/signature`, `/record-type`, `/received-at`, `/mapping-version` (`"1"`), `EXT+agent-kind`; plus `/tags`, `/refs`, `EXT+software` when present |
 
-## Telemetry windows
+## Sensed and perceived (0.10.1)
 
-A `perception` record tagged `telemetry` whose payload has a `kind` of `pose`, `navigation` or `sensor` exports that payload as `result.extensions[EXT+telemetry]`. Payload conventions:
+**Sensed** is data from a sensor: what the body measured. **Perceived** is an interpretation of that data: what the agent concluded is true. "12 readings from the front time-of-flight sensor, 118 to 131 mm" is sensed. "Obstacle ahead" is perceived. Both are `perception` records in the memory server; the `telemetry` tag selects "sensed".
+
+### Any sensor
+
+A sensed record's payload goes, whole, in `result.extensions[EXT+telemetry]`. `kind` is free: `pose`, `navigation`, `sensor`, or anything a device defines. For readings, use the `sensor` kind:
 
 ```json
-{"kind": "pose", "frame": "map", "samples": [{"t": 0.0, "x": 1.2, "y": 0.4, "yaw": 1.57}]}
-{"kind": "navigation", "goal": "dock", "status": "active", "distance_remaining_m": 1.8, "progress": 0.4}
-{"kind": "sensor", "sensor": "battery", "unit": "percent", "samples": [{"t": 0, "v": 71}]}
+{"kind": "sensor", "sensor": "front-tof", "modality": "range", "unit": "mm", "rate_hz": 10,
+ "samples": [{"t": 0.0, "v": 131}, {"t": 0.1, "v": 118}],
+ "stats": {"min": 118, "max": 131, "mean": 124.5, "count": 2}}
 ```
 
-`t` is seconds from the record's `ts`. If the payload's canonical JSON is over **16 KiB**, only `{"kind", "frame"/"sensor"/"unit" when present, "samples_count", "truncated": true}` is exported. Telemetry with any other `kind`, or none, exports no payload. An LRS endpoint can still leave telemetry out entirely through its scope.
+- `sensor`: the sensor's name on this device. `modality`: what it measures (range, imu, temperature, battery, sound-level, light, gps, encoder, force, image-features…). `unit`: a UCUM code where one exists (`mm`, `Cel`, `%`, `m/s2`).
+- `samples[].t` is seconds from the record's `ts`. `samples[].v` may be a number, a list (an IMU's `[ax, ay, az]`) or an object, so any sensor's data element fits.
+- Raw media (images, audio) isn't telemetry. Send what the device extracted from it (`image-features`, `sound-level`), not the media.
+- Pose and navigation keep their 0.10.0 shapes. No window is truncated.
+
+### How sensing feeds learning
+
+Each step of experience is its own statement, and `refs` link them, so a learning analyst can follow one chain from a sensor reading to a lesson:
+
+| Step | Verb | Typical `refs` |
+|---|---|---|
+| Sensor data | sensed | |
+| Interpretation | perceived | `derived_from`: the sensed records |
+| Reasoning | reasoned | `because`: the perception |
+| Commitment | decided | `because`: the perception or thought |
+| Act and outcome | performed | `because`: the decision |
+| Conclusion | learned | `because`: the outcome(s) |
+
+The same chain answers questions at three levels: what an individual robot learned from which senses, what a swarm learned when one member's sensing informed another's decision (references across agents), and how the controlling intelligence's reasoning used its body's data. `holocron/refs` carries all references; exporters may also put `because` in `context.statement` as a StatementRef.
 
 ## Statement templates
 
-`holocron-<type>` for each of the nine record types, plus `telemetry-pose`, `telemetry-navigation` and `telemetry-sensor`. Every template requires the record provenance extensions and the profile version in `category`.
+`holocron-<type>` for each of the nine record types (`holocron-perception` excludes telemetry), `sensed` for data from any sensor, and `telemetry-pose`, `telemetry-navigation` and `telemetry-sensor`, which refine `sensed`. Every template requires the record provenance extensions and the profile version (0.10.0 or 0.10.1) in `category`.
