@@ -80,4 +80,26 @@ The same chain answers questions at three levels: what an individual robot learn
 
 ## Statement templates
 
-`holocron-<type>` for each of the nine record types (`holocron-perception` excludes telemetry), `sensed` for data from any sensor, and `telemetry-pose`, `telemetry-navigation` and `telemetry-sensor`, which refine `sensed`. Every template requires the record provenance extensions and the profile version (0.10.0 or 0.10.1) in `category`.
+`holocron-<type>` for each of the nine record types (`holocron-perception` excludes telemetry), `sensed` for data from any sensor, and `telemetry-pose`, `telemetry-navigation` and `telemetry-sensor`, which refine `sensed`. Every record template requires the record provenance extensions and the profile version (0.10.0 or 0.10.1) in `category`. `dataset-read` (0.11.0) is described below.
+
+## Fleet datasets: reading reference material (0.11.0)
+
+A fleet's memory server can hold **datasets**: versioned reference material
+(documents, tables, sensor logs) that any member may read, often during a
+**dream cycle** while it rests or charges. Members read; they are not trained
+on the data. Every read becomes one statement, using the existing 0.9.0 verb
+**read resource**:
+
+| Part | Value |
+|---|---|
+| verb | `https://w3id.org/xapi-ai/verbs/read-resource` |
+| object | the item, activity type `dataset-item`, id `<server>/datasets/<id>/v/<version>/items/<key>` |
+| `contextActivities.parent` | the dataset version, activity type `dataset` |
+| `contextActivities.grouping` | the fleet, activity type `fleet` |
+| `registration` | the dream cycle's UUID, when the read happened in one |
+| extensions | `resource-version` (0.9.0), `resource-hash` (0.9.0, the item's SHA-256), `read-source` (`served` or `reported`) |
+
+The `dataset-read` template checks these. A lesson that came from reading cites
+the items in its payload (`sources`), so the chain from *read* to *learned* to
+*performed* can be followed across statements. An example is the last line of
+`examples/robotics_example_statements.ndjson`.

@@ -7,6 +7,8 @@ physical-AI module used by Holocron (LTMS) exports, aligned with the I2IDL
 Glossary of Digital Learning via SKOS match properties. 0.10.1 separates
 sensing (raw sensor data, verb "sensed") from perception (interpretation, verb
 "perceived"), opens telemetry to any sensor, and exports full payloads.
+0.11.0 adds fleet datasets: members reading reference material, logged as the
+existing 0.9.0 verb "read-resource" on dataset items, grouped by dream cycle.
 """
 import json
 from pathlib import Path
@@ -16,6 +18,7 @@ PROFILE = f"{BASE}/profile"
 V09 = f"{PROFILE}/0.9.0"
 V010 = f"{PROFILE}/0.10.0"
 V0101 = f"{PROFILE}/0.10.1"
+V011 = f"{PROFILE}/0.11.0"
 G = "https://id.i2idl.org/concepts/"   # I2IDL Glossary, publication v0.0.93
 ADL = "http://adlnet.gov/expapi/verbs/"
 
@@ -186,6 +189,30 @@ V0101_EXT = [
      {"inlineSchema": json.dumps({"type": "string"})}),
 ]
 
+# 0.11.0: fleet datasets read as reference material. Introduced in V011.
+# The verb is the existing 0.9.0 "read-resource"; these refine what was read.
+V011_TYPES = [
+    ("dataset", "Dataset",
+     "A versioned collection of reference material in a fleet's catalog (documents, tables, sensor logs). The "
+     "activity id names one version.", {}),
+    ("dataset-item", "Dataset item",
+     "One file or document inside a dataset version, read by a robot or AI agent as reference material. Its "
+     "parent context activity is the dataset version.", {}),
+    ("dream-cycle", "Dream cycle",
+     "A period, often while resting or charging, in which a robot or agent reads its own records and fleet "
+     "datasets and writes lessons. Statements in one cycle share a registration.",
+     {"relatedMatch": [G + "experiential-learning"]}),
+    ("fleet", "Fleet",
+     "Every swarm and free agent under one memory server and operator, used as a grouping context.", {}),
+]
+V011_EXT = [
+    ("read-source", "Read source",
+     "How the read was known: served (the memory server delivered the item) or reported (the agent fetched it from an "
+     "external catalog integration and reported it).", "ContextExtension",
+     {"inlineSchema": json.dumps({"enum": ["served", "reported"]})}),
+]
+READ_RESOURCE = f"{BASE}/verbs/read-resource"
+
 # Record type -> verb (event uses ADL "experienced").
 RECORD_VERBS = {
     "perception": f"{BASE}/verbs/perceived", "thought": f"{BASE}/verbs/reasoned",
@@ -250,6 +277,23 @@ def templates():
                 {"location": f"$.result.extensions['{EXT}telemetry'].kind", "presence": "included", "all": [kind]},
             ],
         })
+    out.append({
+        "id": f"{BASE}/templates/dataset-read", "type": "StatementTemplate", "inScheme": V011,
+        "prefLabel": {"en": "Dataset read: reference material"},
+        "definition": {"en": "A robot or agent read one item of a fleet dataset as reference material. The parent "
+                             "context activity is the dataset version; a dream cycle, if any, is the registration."},
+        "verb": READ_RESOURCE, "objectActivityType": f"{BASE}/activity-type/dataset-item",
+        "rules": [
+            {"location": "$.actor.account.homePage", "presence": "included"},
+            {"location": "$.context.contextActivities.category[*].id", "presence": "included", "any": [V011]},
+            {"location": "$.context.contextActivities.parent[*].definition.type", "presence": "included",
+             "all": [f"{BASE}/activity-type/dataset"]},
+            {"location": ctx_ext("resource-version"), "presence": "included"},
+            {"location": ctx_ext("resource-hash"), "presence": "recommended"},
+            {"location": ctx_ext("read-source"), "presence": "included"},
+            {"location": "$.context.registration", "presence": "recommended"},
+        ],
+    })
     return out
 
 
@@ -263,6 +307,8 @@ def build():
     concepts += [concept(k, f"extensions/{s}", l, d, V010, **x) for s, l, d, k, x in V010_EXT]
     concepts += [concept("Verb", f"verbs/{s}", l, d, V0101, **x) for s, l, d, x in V0101_VERBS]
     concepts += [concept(k, f"extensions/{s}", l, d, V0101, **x) for s, l, d, k, x in V0101_EXT]
+    concepts += [concept("ActivityType", f"activity-type/{s}", l, d, V011, **x) for s, l, d, x in V011_TYPES]
+    concepts += [concept(k, f"extensions/{s}", l, d, V011, **x) for s, l, d, k, x in V011_EXT]
     return {
         "@context": "https://w3id.org/xapi/profiles/context",
         "id": PROFILE,
@@ -273,12 +319,13 @@ def build():
             "Captures human instructions and AI agent operations, including MCP tool calls, resource access, "
             "generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics "
             "and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data "
-            "from any sensor (0.10.1), full payloads, and provenance extensions that let any statement be verified against "
+            "from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), and provenance extensions that let any statement be verified against "
             "its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) "
             "where a match exists.")},
         "seeAlso": "https://github.com/seanrugg/xapi-ai",
         "author": {"type": "Person", "name": "Sean Rugge", "url": "https://github.com/seanrugg"},
         "versions": [
+            {"id": V011, "wasRevisionOf": [V0101], "generatedAtTime": "2026-11-11T00:00:00Z"},
             {"id": V0101, "wasRevisionOf": [V010], "generatedAtTime": "2026-11-10T00:00:00Z"},
             {"id": V010, "wasRevisionOf": [V09], "generatedAtTime": "2026-10-31T00:00:00Z"},
             {"id": V09, "generatedAtTime": "2026-02-13T16:48:25Z"},
