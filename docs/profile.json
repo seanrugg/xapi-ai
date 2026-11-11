@@ -7,7 +7,7 @@
     "en": "xAPI AI Agent Actions Profile (AIAAP)"
   },
   "definition": {
-    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data from any sensor (0.10.1), full payloads, and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
+    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
   },
   "seeAlso": "https://github.com/seanrugg/xapi-ai",
   "author": {
@@ -16,6 +16,13 @@
     "url": "https://github.com/seanrugg"
   },
   "versions": [
+    {
+      "id": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "wasRevisionOf": [
+        "https://w3id.org/xapi-ai/profile/0.10.1"
+      ],
+      "generatedAtTime": "2026-11-11T00:00:00Z"
+    },
     {
       "id": "https://w3id.org/xapi-ai/profile/0.10.1",
       "wasRevisionOf": [
@@ -866,6 +873,65 @@
         "en": "The record's exact signed header bytes as a UTF-8 string. SHA-256 of it equals holocron/hash, so the statement can be verified offline with the author's public key."
       },
       "inlineSchema": "{\"type\": \"string\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/activity-type/dataset",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Dataset"
+      },
+      "definition": {
+        "en": "A versioned collection of reference material in a fleet's catalog (documents, tables, sensor logs). The activity id names one version."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/activity-type/dataset-item",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Dataset item"
+      },
+      "definition": {
+        "en": "One file or document inside a dataset version, read by a robot or AI agent as reference material. Its parent context activity is the dataset version."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/activity-type/dream-cycle",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Dream cycle"
+      },
+      "definition": {
+        "en": "A period, often while resting or charging, in which a robot or agent reads its own records and fleet datasets and writes lessons. Statements in one cycle share a registration."
+      },
+      "relatedMatch": [
+        "https://id.i2idl.org/concepts/experiential-learning"
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/activity-type/fleet",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Fleet"
+      },
+      "definition": {
+        "en": "Every swarm and free agent under one memory server and operator, used as a grouping context."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/read-source",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Read source"
+      },
+      "definition": {
+        "en": "How the read was known: served (the memory server delivered the item) or reported (the agent fetched it from an external catalog integration and reported it)."
+      },
+      "inlineSchema": "{\"enum\": [\"served\", \"reported\"]}"
     }
   ],
   "templates": [
@@ -1739,6 +1805,55 @@
           "all": [
             "sensor"
           ]
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/templates/dataset-read",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.11.0",
+      "prefLabel": {
+        "en": "Dataset read: reference material"
+      },
+      "definition": {
+        "en": "A robot or agent read one item of a fleet dataset as reference material. The parent context activity is the dataset version; a dream cycle, if any, is the registration."
+      },
+      "verb": "https://w3id.org/xapi-ai/verbs/read-resource",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/dataset-item",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi-ai/profile/0.11.0"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.parent[*].definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi-ai/activity-type/dataset"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/resource-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/resource-hash']",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/read-source']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.registration",
+          "presence": "recommended"
         }
       ]
     }
