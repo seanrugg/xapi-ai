@@ -1,6 +1,6 @@
 # Glossary gaps (I2IDL Glossary of Digital Learning, v0.0.93)
 
-Checked 31 Oct 2026 through the glossary's public MCP endpoint (`https://id.i2idl.org/mcp`). These AIAAP 0.10 concepts have **no matching glossary concept**, or only a loose one. They are where learning-record vocabulary meets robots, hybrid AI and swarms, and are offered as feedback to I2IDL.
+Checked 31 Oct 2026 (0.12.0 rows: 22 Nov 2026) through the glossary's public MCP endpoint (`https://id.i2idl.org/mcp`). These AIAAP 0.10 concepts have **no matching glossary concept**, or only a loose one. They are where learning-record vocabulary meets robots, hybrid AI and swarms, and are offered as feedback to I2IDL.
 
 | AIAAP concept | Closest glossary concept | Gap |
 |---|---|---|
@@ -12,6 +12,9 @@ Checked 31 Oct 2026 through the glossary's public MCP endpoint (`https://id.i2id
 | set policy | none | No concept for an operator rule that governs AI behavior |
 | telemetry, pose, navigation, sensor | none | No telemetry or sensor-data concepts |
 | swarm, hub/relay | none | No concept for a group of autonomous agents or a relay |
+| invoked tool (0.9.0, used by the 0.12.0 harness module) | `ai-foundations-and-applications` (loose: using AI tools) | No concept for an agent calling a software tool |
+| reported usage, usage report (0.12.0) | `learning-analytics` (loose: about learning environments) | No concept for an agent's usage counters, such as sessions, tool calls, error classes and token totals |
+| agent harness (0.12.0) | none | No concept for the runtime an AI agent operates in |
 | robot, AI agent as a learner or actor | `artificial-intelligence-ai` (broad) | No concept for a non-human actor that learns |
 
 Concepts that **do** match are linked in the profile with SKOS match properties: `learned` ↔ `experiential-learning`, `knowledge-retention`, `feedback-loop`; `reasoned` ↔ `sensemaking`, `metacognition`; `communicated` ↔ `social-learning`; the record activity type ↔ `long-term-memory`.
