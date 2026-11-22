@@ -7,7 +7,7 @@
     "en": "xAPI AI Agent Actions Profile (AIAAP)"
   },
   "definition": {
-    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
+    "en": "Captures human instructions and AI agent operations, including MCP tool calls, resource access, generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), tool calls and daily usage reports recorded by agent harnesses (0.12.0), and provenance extensions that let any statement be verified against its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) where a match exists."
   },
   "seeAlso": "https://github.com/seanrugg/xapi-ai",
   "author": {
@@ -16,6 +16,13 @@
     "url": "https://github.com/seanrugg"
   },
   "versions": [
+    {
+      "id": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "wasRevisionOf": [
+        "https://w3id.org/xapi-ai/profile/0.11.0"
+      ],
+      "generatedAtTime": "2026-11-22T00:00:00Z"
+    },
     {
       "id": "https://w3id.org/xapi-ai/profile/0.11.0",
       "wasRevisionOf": [
@@ -932,6 +939,88 @@
         "en": "How the read was known: served (the memory server delivered the item) or reported (the agent fetched it from an external catalog integration and reported it)."
       },
       "inlineSchema": "{\"enum\": [\"served\", \"reported\"]}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/verbs/reported-usage",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "reported usage"
+      },
+      "definition": {
+        "en": "An AI agent, or the harness it runs in, reported bounded usage counters for a period: sessions, tool calls, error classes, model routes and token totals. A usage report never contains prompts, messages, tool parameters or results, file paths, setting values or error text."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/activity-type/usage-report",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Usage report"
+      },
+      "definition": {
+        "en": "One period's usage counters for one AI agent, as sent by its harness. The activity id names the agent and period."
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/harness",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Agent harness"
+      },
+      "definition": {
+        "en": "The agent harness that recorded the statement's source, e.g. {\"name\": \"hermes\", \"plugin\": \"ltms_recorder\", \"version\": \"0.1.0\"}."
+      },
+      "inlineSchema": "{\"type\": \"object\", \"required\": [\"name\"], \"properties\": {\"name\": {\"type\": \"string\", \"description\": \"the harness, e.g. hermes, openclaw\"}, \"plugin\": {\"type\": \"string\"}, \"version\": {\"type\": \"string\"}}}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/tool-parameters-truncated",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Tool parameters truncated"
+      },
+      "definition": {
+        "en": "True when tool-parameters holds only the beginning of the parameters, as text."
+      },
+      "inlineSchema": "{\"type\": \"boolean\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/tool-result-truncated",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Tool result truncated"
+      },
+      "definition": {
+        "en": "True when result.response holds only the beginning of the tool's result."
+      },
+      "inlineSchema": "{\"type\": \"boolean\"}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/usage",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Usage counters"
+      },
+      "definition": {
+        "en": "Bounded usage counters for one period. Error reasons come from a fixed list. Never prompts, messages, tool parameters or results, paths, setting values or error text."
+      },
+      "inlineSchema": "{\"type\": \"object\", \"required\": [\"usage_schema\"], \"properties\": {\"usage_schema\": {\"type\": \"integer\", \"minimum\": 1, \"description\": \"version of this counter layout\"}, \"sessions\": {\"type\": \"object\", \"properties\": {\"started\": {\"type\": \"integer\", \"minimum\": 0}, \"completed\": {\"type\": \"integer\", \"minimum\": 0}, \"interrupted\": {\"type\": \"integer\", \"minimum\": 0}}}, \"tool_calls\": {\"type\": \"object\", \"description\": \"tool name -> {ok, error}; a bounded set of names, the rest under \\\"other\\\"\", \"additionalProperties\": {\"type\": \"object\", \"properties\": {\"ok\": {\"type\": \"integer\", \"minimum\": 0}, \"error\": {\"type\": \"integer\", \"minimum\": 0}}}}, \"tool_errors\": {\"type\": \"object\", \"description\": \"error reason -> count, from a fixed list\", \"propertyNames\": {\"enum\": [\"timeout\", \"not_found\", \"invalid_args\", \"refused\", \"unavailable\", \"upstream_error\", \"other\"]}, \"additionalProperties\": {\"type\": \"integer\", \"minimum\": 0}}, \"model_routes\": {\"type\": \"object\", \"description\": \"\\\"provider/model\\\" -> totals\", \"additionalProperties\": {\"type\": \"object\", \"properties\": {\"calls\": {\"type\": \"integer\", \"minimum\": 0}, \"input_tokens\": {\"type\": \"integer\", \"minimum\": 0}, \"output_tokens\": {\"type\": \"integer\", \"minimum\": 0}, \"api_seconds\": {\"type\": \"number\", \"minimum\": 0}}}}, \"api_errors\": {\"type\": \"object\", \"propertyNames\": {\"enum\": [\"4xx\", \"5xx\", \"network\", \"other\"]}, \"additionalProperties\": {\"type\": \"integer\", \"minimum\": 0}}, \"compactions\": {\"type\": \"integer\", \"minimum\": 0}, \"machine\": {\"type\": \"object\", \"description\": \"coarse facts only: arch, os, RAM in whole GB, harness version\", \"properties\": {\"arch\": {\"type\": \"string\"}, \"os\": {\"type\": \"string\"}, \"ram_gb\": {\"type\": \"integer\", \"minimum\": 0}, \"harness_version\": {\"type\": \"string\"}, \"plugin_version\": {\"type\": \"string\"}}}}}"
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/extensions/usage-period",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Usage period"
+      },
+      "definition": {
+        "en": "The period a usage report covers: a UTC date (YYYY-MM-DD)."
+      },
+      "inlineSchema": "{\"type\": \"string\", \"format\": \"date\"}"
     }
   ],
   "templates": [
@@ -1853,6 +1942,129 @@
         },
         {
           "location": "$.context.registration",
+          "presence": "recommended"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/templates/harness-tool-call",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Harness tool call"
+      },
+      "definition": {
+        "en": "An AI agent called a tool, as recorded by its agent harness from the call itself (not from the model's account of it). The object is the tool; the source record is a context activity, so the provenance extensions still verify the statement. The raw result, possibly truncated, is result.response; the duration is result.duration."
+      },
+      "verb": "https://w3id.org/xapi-ai/verbs/invoked-tool",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/tool",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi-ai/profile/0.12.0"
+          ]
+        },
+        {
+          "location": "$.context.contextActivities.other[*].definition.type",
+          "presence": "included",
+          "all": [
+            "https://w3id.org/xapi-ai/activity-type/record"
+          ]
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/tool-name']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/signature']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/mapping-version']",
+          "presence": "included"
+        },
+        {
+          "location": "$.result.success",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.result.duration",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.result.response",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/session-id']",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/model-id']",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/harness']",
+          "presence": "recommended"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/xapi-ai/templates/agent-usage-report",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/xapi-ai/profile/0.12.0",
+      "prefLabel": {
+        "en": "Agent usage report"
+      },
+      "definition": {
+        "en": "One period's usage counters for an AI agent. Safe to share across organizations: it must never carry prompts, messages, tool parameters or results, file paths, setting values or error text, so result.response is excluded."
+      },
+      "verb": "https://w3id.org/xapi-ai/verbs/reported-usage",
+      "objectActivityType": "https://w3id.org/xapi-ai/activity-type/usage-report",
+      "rules": [
+        {
+          "location": "$.actor.account.homePage",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.contextActivities.category[*].id",
+          "presence": "included",
+          "any": [
+            "https://w3id.org/xapi-ai/profile/0.12.0"
+          ]
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/xapi-ai/extensions/usage']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/usage-period']",
+          "presence": "included"
+        },
+        {
+          "location": "$.result.response",
+          "presence": "excluded"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/tool-parameters']",
+          "presence": "excluded"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/holocron/hash']",
+          "presence": "recommended"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/xapi-ai/extensions/harness']",
           "presence": "recommended"
         }
       ]

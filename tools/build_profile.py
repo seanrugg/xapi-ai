@@ -9,6 +9,9 @@ sensing (raw sensor data, verb "sensed") from perception (interpretation, verb
 "perceived"), opens telemetry to any sensor, and exports full payloads.
 0.11.0 adds fleet datasets: members reading reference material, logged as the
 existing 0.9.0 verb "read-resource" on dataset items, grouped by dream cycle.
+0.12.0 adds the agent harness module: tool calls recorded by an agent harness
+(Hermes, OpenClaw, ...) exported with the existing 0.9.0 verb "invoked-tool",
+and daily usage reports (bounded counters, never content).
 """
 import json
 from pathlib import Path
@@ -19,6 +22,7 @@ V09 = f"{PROFILE}/0.9.0"
 V010 = f"{PROFILE}/0.10.0"
 V0101 = f"{PROFILE}/0.10.1"
 V011 = f"{PROFILE}/0.11.0"
+V012 = f"{PROFILE}/0.12.0"
 G = "https://id.i2idl.org/concepts/"   # I2IDL Glossary, publication v0.0.93
 ADL = "http://adlnet.gov/expapi/verbs/"
 
@@ -213,6 +217,79 @@ V011_EXT = [
 ]
 READ_RESOURCE = f"{BASE}/verbs/read-resource"
 
+# 0.12.0: agent harness module. Introduced in V012.
+# Tool calls reuse the 0.9.0 verb "invoked-tool", type "tool" and extensions
+# (tool-name, tool-parameters, latency-ms, model-id, session-id).
+V012_VERBS = [
+    ("reported-usage", "reported usage",
+     "An AI agent, or the harness it runs in, reported bounded usage counters for a period: sessions, tool calls, "
+     "error classes, model routes and token totals. A usage report never contains prompts, messages, tool "
+     "parameters or results, file paths, setting values or error text.", {}),
+]
+V012_TYPES = [
+    ("usage-report", "Usage report",
+     "One period's usage counters for one AI agent, as sent by its harness. The activity id names the agent and "
+     "period.", {}),
+]
+TOOL_ERROR_REASONS = ["timeout", "not_found", "invalid_args", "refused", "unavailable", "upstream_error", "other"]
+SCHEMA_USAGE = {
+    "type": "object",
+    "required": ["usage_schema"],
+    "properties": {
+        "usage_schema": {"type": "integer", "minimum": 1, "description": "version of this counter layout"},
+        "sessions": {"type": "object", "properties": {
+            "started": {"type": "integer", "minimum": 0},
+            "completed": {"type": "integer", "minimum": 0},
+            "interrupted": {"type": "integer", "minimum": 0}}},
+        "tool_calls": {"type": "object", "description": "tool name -> {ok, error}; a bounded set of names, the rest under \"other\"",
+                       "additionalProperties": {"type": "object", "properties": {
+                           "ok": {"type": "integer", "minimum": 0}, "error": {"type": "integer", "minimum": 0}}}},
+        "tool_errors": {"type": "object", "description": "error reason -> count, from a fixed list",
+                        "propertyNames": {"enum": TOOL_ERROR_REASONS},
+                        "additionalProperties": {"type": "integer", "minimum": 0}},
+        "model_routes": {"type": "object", "description": "\"provider/model\" -> totals",
+                         "additionalProperties": {"type": "object", "properties": {
+                             "calls": {"type": "integer", "minimum": 0},
+                             "input_tokens": {"type": "integer", "minimum": 0},
+                             "output_tokens": {"type": "integer", "minimum": 0},
+                             "api_seconds": {"type": "number", "minimum": 0}}}},
+        "api_errors": {"type": "object", "propertyNames": {"enum": ["4xx", "5xx", "network", "other"]},
+                       "additionalProperties": {"type": "integer", "minimum": 0}},
+        "compactions": {"type": "integer", "minimum": 0},
+        "machine": {"type": "object", "description": "coarse facts only: arch, os, RAM in whole GB, harness version",
+                    "properties": {"arch": {"type": "string"}, "os": {"type": "string"},
+                                   "ram_gb": {"type": "integer", "minimum": 0},
+                                   "harness_version": {"type": "string"}, "plugin_version": {"type": "string"}}},
+    },
+}
+SCHEMA_HARNESS = {
+    "type": "object",
+    "required": ["name"],
+    "properties": {"name": {"type": "string", "description": "the harness, e.g. hermes, openclaw"},
+                   "plugin": {"type": "string"}, "version": {"type": "string"}},
+}
+V012_EXT = [
+    ("harness", "Agent harness",
+     "The agent harness that recorded the statement's source, e.g. {\"name\": \"hermes\", \"plugin\": "
+     "\"ltms_recorder\", \"version\": \"0.1.0\"}.", "ContextExtension",
+     {"inlineSchema": json.dumps(SCHEMA_HARNESS)}),
+    ("tool-parameters-truncated", "Tool parameters truncated",
+     "True when tool-parameters holds only the beginning of the parameters, as text.", "ContextExtension",
+     {"inlineSchema": json.dumps({"type": "boolean"})}),
+    ("tool-result-truncated", "Tool result truncated",
+     "True when result.response holds only the beginning of the tool's result.", "ResultExtension",
+     {"inlineSchema": json.dumps({"type": "boolean"})}),
+    ("usage", "Usage counters",
+     "Bounded usage counters for one period. Error reasons come from a fixed list. Never prompts, messages, tool "
+     "parameters or results, paths, setting values or error text.", "ResultExtension",
+     {"inlineSchema": json.dumps(SCHEMA_USAGE)}),
+    ("usage-period", "Usage period",
+     "The period a usage report covers: a UTC date (YYYY-MM-DD).", "ContextExtension",
+     {"inlineSchema": json.dumps({"type": "string", "format": "date"})}),
+]
+INVOKED_TOOL = f"{BASE}/verbs/invoked-tool"
+REPORTED_USAGE = f"{BASE}/verbs/reported-usage"
+
 # Record type -> verb (event uses ADL "experienced").
 RECORD_VERBS = {
     "perception": f"{BASE}/verbs/perceived", "thought": f"{BASE}/verbs/reasoned",
@@ -294,6 +371,49 @@ def templates():
             {"location": "$.context.registration", "presence": "recommended"},
         ],
     })
+    out.append({
+        "id": f"{BASE}/templates/harness-tool-call", "type": "StatementTemplate", "inScheme": V012,
+        "prefLabel": {"en": "Harness tool call"},
+        "definition": {"en": "An AI agent called a tool, as recorded by its agent harness from the call itself (not "
+                             "from the model's account of it). The object is the tool; the source record is a "
+                             "context activity, so the provenance extensions still verify the statement. The raw "
+                             "result, possibly truncated, is result.response; the duration is result.duration."},
+        "verb": INVOKED_TOOL, "objectActivityType": f"{BASE}/activity-type/tool",
+        "rules": [
+            {"location": "$.actor.account.homePage", "presence": "included"},
+            {"location": "$.context.contextActivities.category[*].id", "presence": "included", "any": [V012]},
+            {"location": "$.context.contextActivities.other[*].definition.type", "presence": "included",
+             "all": [f"{BASE}/activity-type/record"]},
+            {"location": ctx_ext("tool-name"), "presence": "included"},
+            {"location": ctx_ext("holocron/hash"), "presence": "included"},
+            {"location": ctx_ext("holocron/signature"), "presence": "included"},
+            {"location": ctx_ext("holocron/mapping-version"), "presence": "included"},
+            {"location": "$.result.success", "presence": "recommended"},
+            {"location": "$.result.duration", "presence": "recommended"},
+            {"location": "$.result.response", "presence": "recommended"},
+            {"location": ctx_ext("session-id"), "presence": "recommended"},
+            {"location": ctx_ext("model-id"), "presence": "recommended"},
+            {"location": ctx_ext("harness"), "presence": "recommended"},
+        ],
+    })
+    out.append({
+        "id": f"{BASE}/templates/agent-usage-report", "type": "StatementTemplate", "inScheme": V012,
+        "prefLabel": {"en": "Agent usage report"},
+        "definition": {"en": "One period's usage counters for an AI agent. Safe to share across organizations: it "
+                             "must never carry prompts, messages, tool parameters or results, file paths, setting "
+                             "values or error text, so result.response is excluded."},
+        "verb": REPORTED_USAGE, "objectActivityType": f"{BASE}/activity-type/usage-report",
+        "rules": [
+            {"location": "$.actor.account.homePage", "presence": "included"},
+            {"location": "$.context.contextActivities.category[*].id", "presence": "included", "any": [V012]},
+            {"location": f"$.result.extensions['{EXT}usage']", "presence": "included"},
+            {"location": ctx_ext("usage-period"), "presence": "included"},
+            {"location": "$.result.response", "presence": "excluded"},
+            {"location": ctx_ext("tool-parameters"), "presence": "excluded"},
+            {"location": ctx_ext("holocron/hash"), "presence": "recommended"},
+            {"location": ctx_ext("harness"), "presence": "recommended"},
+        ],
+    })
     return out
 
 
@@ -309,6 +429,9 @@ def build():
     concepts += [concept(k, f"extensions/{s}", l, d, V0101, **x) for s, l, d, k, x in V0101_EXT]
     concepts += [concept("ActivityType", f"activity-type/{s}", l, d, V011, **x) for s, l, d, x in V011_TYPES]
     concepts += [concept(k, f"extensions/{s}", l, d, V011, **x) for s, l, d, k, x in V011_EXT]
+    concepts += [concept("Verb", f"verbs/{s}", l, d, V012, **x) for s, l, d, x in V012_VERBS]
+    concepts += [concept("ActivityType", f"activity-type/{s}", l, d, V012, **x) for s, l, d, x in V012_TYPES]
+    concepts += [concept(k, f"extensions/{s}", l, d, V012, **x) for s, l, d, k, x in V012_EXT]
     return {
         "@context": "https://w3id.org/xapi/profiles/context",
         "id": PROFILE,
@@ -319,12 +442,13 @@ def build():
             "Captures human instructions and AI agent operations, including MCP tool calls, resource access, "
             "generation, delegation, evaluation, approvals and governance outcomes. Version 0.10 adds a robotics "
             "and physical-AI module for robots, hybrid AI and swarms: one verb per memory-record type, sensed data "
-            "from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), and provenance extensions that let any statement be verified against "
+            "from any sensor (0.10.1), full payloads, fleet datasets read as reference material (0.11.0), tool calls and daily usage reports recorded by agent harnesses (0.12.0), and provenance extensions that let any statement be verified against "
             "its signed source record. Concepts are aligned with the I2IDL Glossary of Digital Learning (v0.0.93) "
             "where a match exists.")},
         "seeAlso": "https://github.com/seanrugg/xapi-ai",
         "author": {"type": "Person", "name": "Sean Rugge", "url": "https://github.com/seanrugg"},
         "versions": [
+            {"id": V012, "wasRevisionOf": [V011], "generatedAtTime": "2026-11-22T00:00:00Z"},
             {"id": V011, "wasRevisionOf": [V0101], "generatedAtTime": "2026-11-11T00:00:00Z"},
             {"id": V0101, "wasRevisionOf": [V010], "generatedAtTime": "2026-11-10T00:00:00Z"},
             {"id": V010, "wasRevisionOf": [V09], "generatedAtTime": "2026-10-31T00:00:00Z"},
