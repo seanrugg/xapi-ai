@@ -85,8 +85,8 @@ A memory server that records harness activity (for example LTMS with its Hermes 
 | `action` tagged `tool-call`, with a payload that names `tool_name` | `harness-tool-call` |
 | `perception` tagged `agent-rollup` | `agent-usage-report`. This takes precedence over `sensed`, although such records also carry the `telemetry` tag |
 
-Statement ids for these records use the mapping version 2 namespace, as the version 1 rule requires for a new mapping version:
+Statement ids **keep the version 1 rule**: `uuid5(NS, record.hash)` with the version 1 namespace `19413c7a-d33c-5129-b99b-07d709cef285`. A `StatementRef` to a cause is built from the cause's hash alone, so every record, whatever its mapping version, must keep the id that rule gives it.
 
-`NS = uuid5(NAMESPACE_URL, "https://w3id.org/xapi-ai/profile/0.12.0/holocron-mapping/2")` = `31b68372-c7b5-5262-a399-635efc86bdbe`
+A record maps to one statement under one mapping version, and a memory server doesn't re-send records already sent, so the shared namespace never gives one id to two different statements in practice.
 
-The id is still `uuid5(NS, record.hash)`.
+LTMS keeps its rollup payload's own field names. The translator renames two of them for the `usage` extension: `rollup_schema` becomes `usage_schema`, and `machine.hermes_version` becomes `machine.harness_version`. The payload's `date` goes to `usage-period`.
